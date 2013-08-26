@@ -36,11 +36,9 @@ http://www.springframework.org/schema/data/mongo http://www.springframework.org/
         <constructor-arg value="${MONGOLAB_URI}" />
     </bean>
 	
-	<bean class="com.mongodb.Mongo" id="mongo">
-        <constructor-arg ref="mongoURI" />
-    </bean>
-    
-	<mongo:db-factory dbname="flypost" />
+	<bean id="mongoDbFactory" class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+		<constructor-arg ref="mongoURI" />
+	</bean>
  
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
