@@ -3,7 +3,7 @@
     <body>
         <h1>Flypost</h1>
         <h2>Neu</h2>
-        <form:form action="/flypost/aushaenge" method="post">
+        <form:form action="${context}/aushaenge" method="post">
         	<div>
         		<form:label path="headline">&Uuml;berschrift</form:label>
         		<form:input rows="3" path="headline"></form:input>
