@@ -4,7 +4,7 @@
   <groupId>de.ueberproduct.flypost</groupId>
   <artifactId>flypost</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <name>Flypost Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
