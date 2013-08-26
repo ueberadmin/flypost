@@ -14,10 +14,8 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-  		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_FALLBACK"/>
-  		<property name="searchSystemEnvironment" value="true"/>
-	</bean>
+	<context:annotation-config/>
+    <context:property-placeholder/>
 	
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
 	<context:component-scan base-package="de.ueberproduct.flypost" />
