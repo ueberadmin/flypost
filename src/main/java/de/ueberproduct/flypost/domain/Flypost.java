@@ -12,6 +12,20 @@ public class Flypost {
 	private String description;
 	private String contactData;
 	
+	private String imageId;
+	
+	Flypost() {
+		// for spring
+	}
+	
+	private Flypost(Builder builder) {
+		this.headline = builder.headline;
+		this.description = builder.description;
+		this.contactData = builder.contactData;
+		this.imageId = builder.imageId;
+	}
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -25,6 +39,10 @@ public class Flypost {
 	public String getHeadline() {
 		return headline;
 	}
+	public String getImageId() {
+		return imageId;
+	}
+
 	
 	public void setContactData(String contactData) {
 		this.contactData = contactData;
@@ -41,14 +59,47 @@ public class Flypost {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public void setImageId(String imageId) {
+		this.imageId = imageId;
+	}
 
 	@Override
 	public String toString() {
-		return "FlyPost [id=" + id + ", headline=" + headline
+		return "Flypost [id=" + id + ", headline=" + headline
 				+ ", description=" + description + ", contactData="
-				+ contactData + "]";
+				+ contactData + ", imageId=" + imageId + "]";
 	}
 	
-	
+	public static class Builder {
+		private String headline;
+		private String description;
+		private String contactData;
+		
+		private String imageId;
+		
+		public Builder headline(String value) {
+			this.headline = value;
+			return this;
+		}
+		
+		public Builder description(String value) {
+			this.description = value;
+			return this;
+		}
+		
+		public Builder contactData(String value) {
+			this.contactData = value;
+			return this;
+		}
+		
+		public Builder imageId(String value) {
+			this.imageId = value;
+			return this;
+		}
+		
+		public Flypost get() {
+			return new Flypost(this);
+		}
+	}
 
 }

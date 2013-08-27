@@ -22,6 +22,11 @@ public class ShowFlypostController {
 		Flypost flypost = application.getFlypost(id);
 		mav.addObject("flypost", flypost);
 		
+		String imageId = flypost.getImageId();
+		if (imageId != null) {
+			mav.addObject("imageUrl", flypost.getId()+"/image");
+		}
+		
 		return mav;
 	}
 
