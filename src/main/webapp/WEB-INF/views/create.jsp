@@ -32,7 +32,7 @@
 						<tr style="width:100%;border-style:none">
 							<td style="width:70%;border-style:none">Ausdrucken und verteilen</td>	
 							<td style="width:30%;border-style:none;text-align:right">
-								<input type="image" src="${context}/static/images/save-icon-small.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; height:33%;">			
+								<input type="image" src="${context}/icons/save-icon-small.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; height:33%;">			
 							</td>
 						</tr>
 					</table>

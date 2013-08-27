@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mongodb.gridfs.GridFSDBFile;
 
 import de.ueberproduct.flypost.domain.Flypost;
+import de.ueberproduct.flypost.utils.StreamUtils;
 
 @Controller
 public class ShowImageController {
@@ -39,13 +40,7 @@ public class ShowImageController {
 		response.setContentType(file.getContentType());
 		InputStream in = file.getInputStream();
 		OutputStream out = response.getOutputStream();
-		
-		byte[] buffer = new byte[512];
-		int numberOfBytes = in.read(buffer);
-		while (numberOfBytes > -1) {
-			out.write(buffer, 0, numberOfBytes);
-			numberOfBytes = in.read(buffer);
-		}
+		StreamUtils.copy(in, out);
 		
 		in.close();
 		out.flush();
