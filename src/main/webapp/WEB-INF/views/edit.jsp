@@ -33,7 +33,7 @@
 						<tr style="width:100%;border-style:none">
 							<td style="width:70%;border-style:none">Ausdrucken und verteilen</td>	
 							<td style="width:30%;border-style:none;text-align:right">
-								<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; height:33%;">			
+								<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; width:20%;">			
 							</td>
 						</tr>
 					</table>
@@ -44,7 +44,7 @@
 				<div class="content">
 				
 					<div style="margin-top:2%; width:100%; border-style:none;">
-						<form:input id="headline" path="headline" type="text" placeholder="Überschrift hier eingeben" style="border-style:none;margin-left:5%;margin-right:5%;width:90%;" />
+						<form:input id="headline" path="headline" type="text" placeholder="Überschrift hier eingeben" style="border:LightGray 1px solid;margin-left:5%;margin-right:5%;width:90%;" />
 					</div>
 					
 					<div style="margin-top:2%; width:100%; border-style:none;">
@@ -58,12 +58,12 @@
 						</div>
 					</div>
 					<div style="margin-top:1%; width:100%; border-style:none;">
-						<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border-style:none;margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
+						<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border:LightGray 1px solid; margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
 					</div>
 					<div style="margin-top:1%; width:100%; border-style:none;">
-						<div style="border-style:none;margin-left:5%;margin-right:5%;width:90%; height:10%">
+						<div style="border-style:none;margin-left:5%;margin-right:5%;margin-bottom:1%;width:90%; height:10%">
 							<span>
-								<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border-style:none;height:100%;width:80%;"></form:textarea>
+								<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border:LightGray 1px solid;height:100%;width:80%;"></form:textarea>
 							</span>
 							<span>
 								<img id="qrCode" src="${qrCodeUrl}" height="100%">
@@ -71,7 +71,7 @@
 							
 						</div>
 					</div>
-					<div style="margin-top:0px; margin-left:0px; width:100%; border-top: gray 2px dashed; height:31%;">
+					<div style="margin-top:1px; margin-left:0px; width:100%; border-top: gray 2px dashed; height:31%;">
 						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
 							<!-- table style="height:100%; border-style:none;">
 								<tr style="height:100%;">
@@ -160,7 +160,7 @@
 	    </form:form>	
 	</body>
 
- 	<script>
+ 	<script type="text/javascript">
     
     function handleFileSelect(evt) {
         var files = evt.target.files; // FileList object
@@ -199,22 +199,11 @@
     	  }
       }
       
+      
       document.getElementById('headline').addEventListener('change', modified, false);
       document.getElementById('files').addEventListener('change', modified, false);
       document.getElementById('description').addEventListener('change', modified, false);
       document.getElementById('contactData').addEventListener('change', modified, false);
     
-
-      var sheetContainer = document.getElementById("sheetContainer");      
-      
-      
-      var sheet = document.getElementById("sheet");
-      
-      //sheet.style.width=sheetContainer.offsetHeight+"px";
-      //sheet.style.height=sheetContainer.offsetWidth+"px";
-      //sheet.style.top=sheetContainer.offsetTop+sheetContainer.offsetHeight;
-      
-      
-  
-      </script>
+   </script>
 </html>
