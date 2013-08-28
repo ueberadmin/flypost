@@ -62,7 +62,15 @@
 						<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border-style:none;margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
 					</div>
 					<div style="margin-top:10%; width:100%; border-style:none;">
-						<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border-style:none;margin-left:5%;margin-right:5%;width:60%;height:10%"></form:textarea>
+						<div style="border-style:none;margin-left:5%;margin-right:5%;width:90%; height:10%">
+							<span>
+								<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border-style:none;height:100%;width:80%;"></form:textarea>
+							</span>
+							<span>
+								<img id="qrCode" src="${qrCodeUrl}" height="100%">
+							</span>
+							
+						</div>
 					</div>
 			
 				</div>
@@ -89,10 +97,8 @@
           reader.onload = (function(theFile) {
             return function(e) {
               // Render thumbnail.
-              // var span = document.createElement('span');
               var span = document.getElementById('imageArea');
               span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" width="100%" height="100%" />'].join('');
-              // document.getElementById('list').insertBefore(span, null);
             };
           })(f);
 
@@ -115,6 +121,6 @@
       document.getElementById('files').addEventListener('change', modified, false);
       document.getElementById('description').addEventListener('change', modified, false);
       document.getElementById('contactData').addEventListener('change', modified, false);
-	
+    
       </script>
 </html>

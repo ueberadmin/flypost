@@ -34,6 +34,7 @@ public class ShowFlypostController {
 		if (imageId != null) {
 			mav.addObject("imageUrl", flypost.getId()+"/image");
 		}
+		mav.addObject("qrCodeUrl", flypost.getId()+"/qr");
 		
 		return mav;
 	}
