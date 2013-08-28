@@ -48,20 +48,19 @@
 					</div>
 					
 					<div style="margin-top:10%; width:100%; border-style:none;">
-						<div style="border:grey 1px dashed;margin-left:5%;margin-right:5%;width:90%; height:20%">
-							<input type="file" id="files" name="image" />
-							<span id="imageArea">
+						<div style="border:grey 1px dashed;margin-left:5%;margin-right:5%;width:90%; height:30%">
+							<input type="file" id="files" name="image" style="height:20%" />
+							<div id="imageArea">
 								<c:if test="${imageUrl != null}">
-									<img class="thumb" src="${imageUrl}" width="100%" height="100%" />
+									<img class="thumb" src="${imageUrl}" style="height:80%" />
 								</c:if>
-							</span>
-							<!-- output id="list"></output -->
+							</div>
 						</div>
 					</div>
-					<div style="margin-top:10%; width:100%; border-style:none;">
+					<div style="margin-top:1%; width:100%; border-style:none;">
 						<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border-style:none;margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
 					</div>
-					<div style="margin-top:10%; width:100%; border-style:none;">
+					<div style="margin-top:1%; width:100%; border-style:none;">
 						<div style="border-style:none;margin-left:5%;margin-right:5%;width:90%; height:10%">
 							<span>
 								<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border-style:none;height:100%;width:80%;"></form:textarea>
@@ -98,7 +97,7 @@
             return function(e) {
               // Render thumbnail.
               var span = document.getElementById('imageArea');
-              span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" width="100%" height="100%" />'].join('');
+              span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" height="80%" />'].join('');
             };
           })(f);
 
