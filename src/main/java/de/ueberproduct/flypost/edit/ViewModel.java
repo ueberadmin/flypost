@@ -1,4 +1,4 @@
-package de.ueberproduct.flypost.create;
+package de.ueberproduct.flypost.edit;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -7,8 +7,7 @@ public class ViewModel {
 	private String headline;
 	private String description;
 	private String contactData;
-	private MultipartFile image;
-	
+	private MultipartFile image;	
 	
 	public String getHeadline() {
 		return headline;
@@ -34,7 +33,4 @@ public class ViewModel {
 	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
-	
-	
-
 }

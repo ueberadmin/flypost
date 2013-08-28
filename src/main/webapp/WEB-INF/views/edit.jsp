@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<style type="text/css">
@@ -24,7 +25,7 @@
 	</head>
 		<body>
 	    <h1>Flypost</h1>
-	    <form:form action="${context}/aushaenge" method="post" enctype="multipart/form-data">
+	    <form:form method="post" enctype="multipart/form-data">
 		    <div>
 				<div style="width:30%;border-style:none;">
 					<table style="width:100%;border-style:none">
@@ -49,7 +50,12 @@
 					<div style="margin-top:10%; width:100%; border-style:none;">
 						<div style="border:grey 1px dashed;margin-left:5%;margin-right:5%;width:90%; height:20%">
 							<input type="file" id="files" name="image" />
-							<output id="list"></output>
+							<span id="imageArea">
+								<c:if test="${imageUrl != null}">
+									<img class="thumb" src="${imageUrl}" width="100%" height="100%" />
+								</c:if>
+							</span>
+							<!-- output id="list"></output -->
 						</div>
 					</div>
 					<div style="margin-top:10%; width:100%; border-style:none;">
@@ -63,15 +69,7 @@
 		  	</div>
 	    </form:form>	
 	</body>
-	
-	
-    <!--     	
-        	<div>
-	        	<label for="image">Bild</label>
-	        	<input type="file" id="files" name="image" />
-				<output id="list"></output>
-        	</div>
-         -->	
+
  	<script>
     
     function handleFileSelect(evt) {
@@ -91,9 +89,10 @@
           reader.onload = (function(theFile) {
             return function(e) {
               // Render thumbnail.
-              var span = document.createElement('span');
+              // var span = document.createElement('span');
+              var span = document.getElementById('imageArea');
               span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" width="100%" height="100%" />'].join('');
-              document.getElementById('list').insertBefore(span, null);
+              // document.getElementById('list').insertBefore(span, null);
             };
           })(f);
 
