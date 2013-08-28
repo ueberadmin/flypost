@@ -43,11 +43,11 @@
 		    <div class="aspectwrapper">
 				<div class="content">
 				
-					<div style="margin-top:10%; width:100%; border-style:none;">
+					<div style="margin-top:2%; width:100%; border-style:none;">
 						<form:input id="headline" path="headline" type="text" placeholder="Überschrift hier eingeben" style="border-style:none;margin-left:5%;margin-right:5%;width:90%;" />
 					</div>
 					
-					<div style="margin-top:10%; width:100%; border-style:none;">
+					<div style="margin-top:2%; width:100%; border-style:none;">
 						<div style="border:grey 1px dashed;margin-left:5%;margin-right:5%;width:90%; height:30%">
 							<input type="file" id="files" name="image" style="height:20%" />
 							<div id="imageArea">
@@ -71,7 +71,65 @@
 							
 						</div>
 					</div>
-			
+					<div style="margin-top:0px; margin-left:0px; width:100%; border-top: gray 2px dashed; height:31%;">
+						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+							<!-- table style="height:100%; border-style:none;">
+								<tr style="height:100%;">
+									<td id="sheetCell" style="width:20%;" rowspan="2">
+										<div id="sheet" 
+											style="
+											float: left; 
+    										position: relative;
+										    -moz-transform: rotate(270deg);  /* FF3.5+ */        
+										    -o-transform: rotate(270deg);  /* Opera 10.5 */   
+										    -webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										    filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										    -ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */ 
+										    font-size:0.7em;          
+										">
+											${command.headline}
+										</div>
+									</td>
+									<td style="width:80%; height:20%;" valign="top">
+										<img id="qrCode" src="${qrCodeUrl}" width="100%">
+									<td>
+								</tr>
+								<tr>
+									<td>D</td>
+								</tr>
+							</table>
+							 -->
+							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 	${command.headline}
+							 </div>
+						</div>
+						
+						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 	${command.headline}
+							 </div>
+						</div>
+						
+						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 	${command.headline}
+							 </div>
+						</div>
+						
+						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 	${command.headline}
+							 </div>
+						</div>
+						
+						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 	${command.headline}
+							 </div>
+						</div>						
+						
+					</div>
+					
 				</div>
 		  	</div>
 	    </form:form>	
@@ -121,5 +179,17 @@
       document.getElementById('description').addEventListener('change', modified, false);
       document.getElementById('contactData').addEventListener('change', modified, false);
     
+
+      var sheetContainer = document.getElementById("sheetContainer");      
+      
+      
+      var sheet = document.getElementById("sheet");
+      
+      //sheet.style.width=sheetContainer.offsetHeight+"px";
+      //sheet.style.height=sheetContainer.offsetWidth+"px";
+      //sheet.style.top=sheetContainer.offsetTop+sheetContainer.offsetHeight;
+      
+      
+  
       </script>
 </html>
