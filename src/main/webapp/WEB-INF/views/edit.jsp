@@ -99,31 +99,56 @@
 								</tr>
 							</table>
 							 -->
-							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 <div id="sheet" style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+										    		-o-transform: rotate(270deg);  /* Opera 10.5 */   
+										    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+										    		position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
 							 	${command.headline}
 							 </div>
 						</div>
 						
 						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 <div id="sheet" style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+										    		-o-transform: rotate(270deg);  /* Opera 10.5 */   
+										    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+										    		position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
 							 	${command.headline}
 							 </div>
 						</div>
 						
 						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 <div id="sheet" style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+										    		-o-transform: rotate(270deg);  /* Opera 10.5 */   
+										    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+										    		position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
 							 	${command.headline}
 							 </div>
 						</div>
 						
 						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 <div id="sheet" style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+										    		-o-transform: rotate(270deg);  /* Opera 10.5 */   
+										    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+										    		position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
 							 	${command.headline}
 							 </div>
 						</div>
 						
 						<div style="margin:0px; width:20%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-							 <div id="sheet" style="-webkit-transform: rotate(270deg); position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
+							 <div id="sheet" style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+										    		-o-transform: rotate(270deg);  /* Opera 10.5 */   
+										    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+										    		position:relative; left:-90%; top:50%; font-size:0.5em; width:200%">
 							 	${command.headline}
 							 </div>
 						</div>						
