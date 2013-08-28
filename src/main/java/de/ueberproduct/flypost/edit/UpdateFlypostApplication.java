@@ -32,7 +32,7 @@ public class UpdateFlypostApplication {
 		flypost.setDescription(viewModel.getDescription());
 		flypost.setContactData(viewModel.getContactData());
 		MultipartFile image = viewModel.getImage();
-		if (image != null) {
+		if (image != null && !image.isEmpty()) {
 			deleteOldImage(flypost);
 			GridFSFile gridFSFile = gridFsOperations.store(image.getInputStream(), image.getName(), image.getContentType());
 			flypost.setImageId(gridFSFile.getId().toString());
