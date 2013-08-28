@@ -33,7 +33,7 @@
 						<tr style="width:100%;border-style:none">
 							<td style="width:70%;border-style:none">Ausdrucken und verteilen</td>	
 							<td style="width:30%;border-style:none;text-align:right">
-								<input type="image" src="${context}/icons/save-icon-small.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; height:33%;">			
+								<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; height:33%;">			
 							</td>
 						</tr>
 					</table>
@@ -44,7 +44,7 @@
 				<div class="content">
 				
 					<div style="margin-top:10%; width:100%; border-style:none;">
-						<form:input path="headline" type="text" placeholder="Überschrift hier eingeben" style="border-style:none;margin-left:5%;margin-right:5%;width:90%;" />
+						<form:input id="headline" path="headline" type="text" placeholder="Überschrift hier eingeben" style="border-style:none;margin-left:5%;margin-right:5%;width:90%;" />
 					</div>
 					
 					<div style="margin-top:10%; width:100%; border-style:none;">
@@ -59,10 +59,10 @@
 						</div>
 					</div>
 					<div style="margin-top:10%; width:100%; border-style:none;">
-						<form:textarea path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border-style:none;margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
+						<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border-style:none;margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
 					</div>
 					<div style="margin-top:10%; width:100%; border-style:none;">
-						<form:textarea path="contactData" placeholder="Ihre Kontaktdaten" style="border-style:none;margin-left:5%;margin-right:5%;width:60%;height:10%"></form:textarea>
+						<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border-style:none;margin-left:5%;margin-right:5%;width:60%;height:10%"></form:textarea>
 					</div>
 			
 				</div>
@@ -102,6 +102,19 @@
       }
 
       document.getElementById('files').addEventListener('change', handleFileSelect, false);
+      
+      var isModified = false;
+      function modified() {
+    	  if (!isModified) {
+    		  isModified = true;
+    		  document.getElementById('saveIcon').src="${context}/icons/save-icon-small.png";
+    	  }
+      }
+      
+      document.getElementById('headline').addEventListener('change', modified, false);
+      document.getElementById('files').addEventListener('change', modified, false);
+      document.getElementById('description').addEventListener('change', modified, false);
+      document.getElementById('contactData').addEventListener('change', modified, false);
 	
       </script>
 </html>
