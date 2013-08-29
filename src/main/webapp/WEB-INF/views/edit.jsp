@@ -30,8 +30,9 @@
 				
 				var preferedWidth = 420;
 				var ratio = newWidth / 420;
-				var newFontSize = (2*100*ratio)+'%';
-				document.getElementById('headline').style.font.size = newFontSize;
+				document.getElementById('headline').style.fontSize = (2*100*ratio)+'%';
+				document.getElementById('description').style.fontSize = (100*ratio)+'%';
+				document.getElementById('contactData').style.fontSize = (100*ratio)+'%';
 			}
 			
 			window.onresize = updateSize;
