@@ -6,6 +6,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "users")
 public class User {
 	
+	public final static String PROP_USERNAME = "username";
+	public final static String PROP_PWDHASH = "pwdHash";
+	
 	@Id
 	public String username;
 	public String pwdHash;

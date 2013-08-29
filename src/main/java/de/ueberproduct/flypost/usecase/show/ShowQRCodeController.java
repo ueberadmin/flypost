@@ -1,4 +1,4 @@
-package de.ueberproduct.flypost.show;
+package de.ueberproduct.flypost.usecase.show;
 
 import java.io.IOException;
 import java.io.OutputStream;

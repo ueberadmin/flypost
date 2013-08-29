@@ -1,4 +1,4 @@
-package de.ueberproduct.flypost.create;
+package de.ueberproduct.flypost.usecase.create;
 
 import javax.annotation.Resource;
 
@@ -13,8 +13,8 @@ public class CreateFlypostApplication {
 	@Resource
 	private MongoOperations mongoOperations;
 
-	public String create() {
-		Flypost flypost = new Flypost.Builder().get();
+	public String create(String username) {
+		Flypost flypost = new Flypost(username);
 		mongoOperations.save(flypost);
 		
 		return flypost.getId();

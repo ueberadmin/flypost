@@ -1,4 +1,4 @@
-package de.ueberproduct.flypost.edit;
+package de.ueberproduct.flypost.usecase.edit;
 
 import org.springframework.web.multipart.MultipartFile;
 

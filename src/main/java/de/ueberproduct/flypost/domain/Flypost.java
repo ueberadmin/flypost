@@ -11,20 +11,17 @@ public class Flypost {
 	private String headline;
 	private String description;
 	private String contactData;
-	
 	private String imageId;
 	
+	private String owner;
+	
 	Flypost() {
-		// for spring
+		
 	}
 	
-	private Flypost(Builder builder) {
-		this.headline = builder.headline;
-		this.description = builder.description;
-		this.contactData = builder.contactData;
-		this.imageId = builder.imageId;
+	public Flypost(String owner) {
+		this.owner = owner;
 	}
-	
 	
 	public String getId() {
 		return id;
@@ -43,6 +40,9 @@ public class Flypost {
 		return imageId;
 	}
 
+	public String getOwner() {
+		return owner;
+	}
 	
 	public void setContactData(String contactData) {
 		this.contactData = contactData;
@@ -63,43 +63,8 @@ public class Flypost {
 		this.imageId = imageId;
 	}
 
-	@Override
-	public String toString() {
-		return "Flypost [id=" + id + ", headline=" + headline
-				+ ", description=" + description + ", contactData="
-				+ contactData + ", imageId=" + imageId + "]";
-	}
-	
-	public static class Builder {
-		private String headline;
-		private String description;
-		private String contactData;
-		
-		private String imageId;
-		
-		public Builder headline(String value) {
-			this.headline = value;
-			return this;
-		}
-		
-		public Builder description(String value) {
-			this.description = value;
-			return this;
-		}
-		
-		public Builder contactData(String value) {
-			this.contactData = value;
-			return this;
-		}
-		
-		public Builder imageId(String value) {
-			this.imageId = value;
-			return this;
-		}
-		
-		public Flypost get() {
-			return new Flypost(this);
-		}
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 }

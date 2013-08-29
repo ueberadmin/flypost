@@ -1,0 +1,19 @@
+h1 { font-size: 2em; font-weight: bold; font-family: 'Times New Roman'; }
+.aspectwrapper {
+	display: inline-block; /* shrink to fit */
+	position: relative; /* so .content can use position: absolute */
+}
+.content {
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0; /* follow the parent's edges */
+	outline: thin none black; /* just so you can see the box */
+}
+.content {
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0; /* follow the parent's edges */
+	outline: thin none black; /* just so you can see the box */
+}
+#headline {
+	font-size:1.2em;
+	font-weight:bold;
+}

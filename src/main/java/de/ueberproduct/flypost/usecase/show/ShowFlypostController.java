@@ -1,4 +1,4 @@
-package de.ueberproduct.flypost.show;
+package de.ueberproduct.flypost.usecase.show;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,38 +10,57 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import de.ueberproduct.flypost.domain.Flypost;
-import de.ueberproduct.flypost.edit.ViewModel;
+import de.ueberproduct.flypost.usecase.edit.ViewModel;
+import de.ueberproduct.flypost.web.SessionData;
 
 @Controller
 public class ShowFlypostController {
+	
+	@Resource
+	private SessionData sessionData;
 	
 	@Resource
 	private ShowFlypostApplication application;
 	
 	
 	@RequestMapping(value = "/aushaenge/{id}", method = RequestMethod.GET) 
-	public ModelAndView edit(@PathVariable("id") String id, HttpServletRequest request) {
-		ModelAndView mav = getInternal(id, "edit", request);
+	public ModelAndView show(@PathVariable("id") String id, HttpServletRequest request) {
+		String username = sessionData.getUsername();
+		Flypost flypost = application.getFlypost(id);
+		
+		boolean isLoggedIn = username != null;
+		boolean isEditable = isLoggedIn && username.equals(flypost.getOwner());
+		
+		
+		String template = "edit"; //isEditable ? "edit" : "show";
+		String borderStyle = isEditable ? "solid" : "none";
+		
+		ModelAndView mav = getInternal(flypost, template, request);
 		mav.addObject("printUrl", getBaseUrl(id, request.getContextPath())+"/druck");
-		mav.addObject("borderStyle", "solid");
-		mav.addObject("forEdit", true);
+		mav.addObject("borderStyle", borderStyle);
+		mav.addObject("forEdit", isEditable);
+		mav.addObject("showSheets", true);
+		mav.addObject("isLoggedIn", isLoggedIn);
+		mav.addObject("currentUrl", request.getRequestURL().toString());
 		
 		return mav;
 	}
 	
 	@RequestMapping(value = "/aushaenge/{id}/druck", method = RequestMethod.GET) 
 	public ModelAndView print(@PathVariable("id") String id, HttpServletRequest request) {
-		ModelAndView mav = getInternal(id, "print", request);
+		Flypost flypost = application.getFlypost(id);
+		ModelAndView mav = getInternal(flypost, "print", request);
 		mav.addObject("borderStyle", "none");
 		mav.addObject("forEdit", false);
+		mav.addObject("showSheets", true);
 		return mav;
 	}
 
 
-	private ModelAndView getInternal(String id, String template, HttpServletRequest request) {
+	private ModelAndView getInternal(Flypost flypost, String template, HttpServletRequest request) {
 		String contextPath = request.getContextPath();
+		String id = flypost.getId();
 		
-		Flypost flypost = application.getFlypost(id);
 		ViewModel viewModel = new ViewModel();
 		viewModel.setHeadline(flypost.getHeadline());
 		viewModel.setDescription(flypost.getDescription());

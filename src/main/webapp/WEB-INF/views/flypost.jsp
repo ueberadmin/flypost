@@ -11,11 +11,11 @@
 			<div style="border:LightGray 1px ${borderStyle};margin-left:5%;margin-right:5%;width:90%; height:30%">
 				<c:if test="${forEdit}"><input type="file" id="files" name="image" style="height:20%" /></c:if>
 				<div>
-					<c:if test="${imageUrl != null}">
-						<center id="imageArea">
+					<center id="imageArea">
+						<c:if test="${imageUrl != null}">
 							<img class="thumb" src="${imageUrl}" style="height:80%" />
-						</center>
-					</c:if>
+						</c:if>
+					</center>
 				</div>
 			</div>
 		</div>
@@ -33,10 +33,31 @@
 				
 			</div>
 		</div>
-		<div style="margin-top:1px; margin-left:0px; width:100%; border-top: gray 2px dashed; height:30%;">
-			<%for (int i = 0; i < 5; i++) {%>
-		
-				<div style="margin:0px; width:16.5%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+		<c:if test="${showSheets}">
+			<div id="sheets" style="margin-top:1px; margin-left:0px; width:100%; border-top: gray 2px dashed; height:30%;">
+				<%for (int i = 0; i < 5; i++) {%>
+			
+					<div style="margin:0px; width:16.5%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+						 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+									 -o-transform: rotate(270deg);  /* Opera 10.5 */   
+									    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+									    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+									    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+									    		position:relative; left:-50%; top:40%; font-size:0.7em; width:200%">
+						 	<div>
+						 		${command.headline}
+						 	</div>	
+						 	<div style="float:left; width:75%;">
+						 		${command.contactData}
+						 	</div>
+						 	<div>
+						 		<img src="${qrCodeUrl}" width="25%">
+						 	</div>
+						 </div>
+					</div>
+				<%} %>
+				
+				<div style="margin:0px; width:16.5%; border-style:none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
 					 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
 								 -o-transform: rotate(270deg);  /* Opera 10.5 */   
 								    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
@@ -54,28 +75,7 @@
 					 	</div>
 					 </div>
 				</div>
-			<%} %>
-			
-			<div style="margin:0px; width:16.5%; border-style:none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-					 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
-								 -o-transform: rotate(270deg);  /* Opera 10.5 */   
-								    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
-								    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
-								    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
-								    		position:relative; left:-50%; top:40%; font-size:0.7em; width:200%">
-					 	<div>
-					 		${command.headline}
-					 	</div>	
-					 	<div style="float:left; width:75%;">
-					 		${command.contactData}
-					 	</div>
-					 	<div>
-					 		<img src="${qrCodeUrl}" width="25%">
-					 	</div>
-					 </div>
-				</div>
-			
+			</div>
+		</c:if>
 		</div>
-		
-	</div>
  	</div>

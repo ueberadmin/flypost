@@ -1,4 +1,4 @@
-package de.ueberproduct.flypost.edit;
+package de.ueberproduct.flypost.usecase.edit;
 
 import java.io.IOException;
 
@@ -26,8 +26,12 @@ public class UpdateFlypostApplication {
 	private GridFsOperations gridFsOperations;
 
 	
-	public void update(String id, ViewModel viewModel) throws IOException {
+	public void update(String id, ViewModel viewModel, String username) throws IOException {
 		Flypost flypost = mongoOperations.findById(id, Flypost.class);
+		if (username == null || !username.equals(flypost.getOwner())) {
+			throw new IllegalArgumentException("User "+username+" is not allowed to modify this flypost.");
+		}
+		
 		flypost.setHeadline(viewModel.getHeadline());
 		flypost.setDescription(viewModel.getDescription());
 		flypost.setContactData(viewModel.getContactData());

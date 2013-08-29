@@ -3,30 +3,63 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="${context}/css/edit.css">
-		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js" > </script> 
+		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js"></script>
+		<script type="text/javascript">
+			function updateSize() {
+				var windowWidth = window.innerWidth;
+				var windowHeight = window.innerHeight;
+				
+				var newWidth = windowWidth;
+				var newHeight = windowHeight;
+				if (windowWidth>windowHeight) {
+					newWidth = windowHeight / 1.414285714;
+				} else {
+					newHeight = windowWith * 1.414285714;
+				}
+				
+				
+				var all = document.getElementById('flypost');
+				all.style.height = newHeight;
+				all.style.width = newWidth;
+				
+				document.getElementById('navi').style.width = newWidth; 
+			}
+			
+			window.onresize = updateSize;
+		</script> 
 	</head>
-		<body>
+		<body onload="updateSize()">
 	    <h1>Flypost</h1>
 	    <form:form method="post" enctype="multipart/form-data">
 		    <div>
-				<div style="width:30%;border-style:none;">
+				<div id="navi" style="width:30%;border-style:none;">
 					<table style="width:100%;border-style:none">
 						<tr style="width:100%;border-style:none"><td>Dein Paper-Post</td></tr>
 						<tr style="width:100%;border-style:none">
 							<td style="width:70%;border-style:none">Ausdrucken und verteilen</td>	
 							<td style="width:30%;border-style:none;text-align:right" align="right">
-								<div style="float:right;overflow-y: auto; margin-left:5%;">
-									<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none;">
-								</div>
+								<c:if test="${forEdit}">
+									<div style="float:right;overflow-y: auto; margin-left:5%;">
+										<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none;">
+									</div>
+								</c:if>
 								<div style="float:right;overflow-y: auto;margin-left:5%;">
 									<a href="javascript:print($('#flypost'));">
 										<img src="${context}/icons/print.png" alt="Drucken" title="Drucken" style="align:right;border-style:none;">
 									</a>
 								</div>
 								<div style="float:right;overflow-y: auto;">
-									<a href="${context}/einloggen" style="height:100%;">
-										<img src="${context}/icons/login.png" alt="Einloggen" title="Einloggen" style="align:right;border-style:none;height:100%;">
-									</a>
+									<c:if test="${isLoggedIn}">
+										<a href="${context}/ausloggen?url=${currentUrl}" style="height:100%;">
+										<img src="${context}/icons/logout.png" alt="Ausloggen" title="Ausloggen" style="align:right;border-style:none;height:100%;">
+										</a>
+									</c:if>
+									<c:if test="${!isLoggedIn}">
+										<a href="${context}/einloggen?url=${currentUrl}" style="height:100%;">
+											<img src="${context}/icons/login.png" alt="Einloggen" title="Einloggen" style="align:right;border-style:none;height:100%;">
+										</a>
+									</c:if>
+									
 								</div>								
 											
 							</td>
@@ -69,7 +102,10 @@
         }
       }
 
-      document.getElementById('files').addEventListener('change', handleFileSelect, false);
+      var filesInput = document.getElementById('files');
+      if (filesInput) {
+      	filesInput.addEventListener('change', handleFileSelect, false);
+      }
       
       var isModified = false;
       function modified() {
