@@ -11,3 +11,8 @@
 	font-size:100%;
 	font-weight:bold;
 }
+
+#content {
+	border-style: none;
+	border-top: thin solid black; /* just so you can see the box */
+}

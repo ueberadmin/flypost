@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div id="flypost" class="aspectwrapper">
-	<div class="content">
+	<div id="content" class="content">
 	
 		<div style="margin-top:2%; width:100%; border-style:none;">
 			<form:input id="headline" path="headline" type="text" placeholder="Überschrift hier eingeben" style="border:LightGray 1px ${borderStyle};margin-left:5%;margin-right:5%;width:90%;" />

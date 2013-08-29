@@ -13,8 +13,8 @@
 				var windowWidth = window.innerWidth;
 				var windowHeight = window.innerHeight;
 				
-				var newWidth = windowWidth * 0.95;
-				var newHeight = windowHeight * 0.95;
+				var newWidth = windowWidth * 0.99;
+				var newHeight = windowHeight * 0.99;
 				if (windowWidth>windowHeight) {
 					newWidth = windowHeight / 1.414285714;
 				} else {
