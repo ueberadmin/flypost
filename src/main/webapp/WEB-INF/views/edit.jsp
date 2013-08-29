@@ -26,7 +26,12 @@
 				all.style.height = newHeight;
 				all.style.width = newWidth;
 				
-				document.getElementById('navi').style.width = newWidth; 
+				document.getElementById('navi').style.width = newWidth;
+				
+				var preferedWidth = 420;
+				var ratio = newWidth / 420;
+				var newFontSize = (2*100*ratio)+'%';
+				document.getElementById('headline').style.font.size = newFontSize;
 			}
 			
 			window.onresize = updateSize;
@@ -108,6 +113,7 @@
       var filesInput = document.getElementById('files');
       if (filesInput) {
       	filesInput.addEventListener('change', handleFileSelect, false);
+      	filesInput.addEventListener('change', modified, false);
       }
       
       var isModified = false;
@@ -120,7 +126,6 @@
       
       
       document.getElementById('headline').addEventListener('keydown', modified, false);
-      document.getElementById('files').addEventListener('change', modified, false);
       document.getElementById('description').addEventListener('keydown', modified, false);
       document.getElementById('contactData').addEventListener('keydown', modified, false);
       
