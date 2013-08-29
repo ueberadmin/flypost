@@ -14,7 +14,7 @@
 				if (windowWidth>windowHeight) {
 					newWidth = windowHeight / 1.414285714;
 				} else {
-					newHeight = windowWith * 1.414285714;
+					newHeight = windowWidth * 1.414285714;
 				}
 				
 				
