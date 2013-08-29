@@ -1,4 +1,7 @@
 <html>
+	<head>
+		<title>Flypost</title>
+	</head>
 	<body>
 		<h1>Einloggen</h1>
 		

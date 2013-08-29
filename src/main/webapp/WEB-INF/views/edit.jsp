@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
+		<title>Flypost</title>
 		<link rel="stylesheet" type="text/css" href="${context}/css/edit.css">
 		<c:if test="${!forEdit}">
 			<link rel="stylesheet" type="text/css" href="${context}/css/readonly.css">
@@ -32,7 +33,6 @@
 		</script> 
 	</head>
 		<body onload="updateSize()">
-	    <h1>Flypost</h1>
 	    <form:form method="post" enctype="multipart/form-data">
 		    <div>
 				<div id="navi" style="width:30%;border-style:none;">
