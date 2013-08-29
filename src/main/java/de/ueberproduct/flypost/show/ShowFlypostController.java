@@ -20,23 +20,46 @@ public class ShowFlypostController {
 	
 	
 	@RequestMapping(value = "/aushaenge/{id}", method = RequestMethod.GET) 
-	public ModelAndView get(@PathVariable("id") String id, HttpServletRequest request) {
-				
+	public ModelAndView edit(@PathVariable("id") String id, HttpServletRequest request) {
+		ModelAndView mav = getInternal(id, "edit", request);
+		mav.addObject("printUrl", getBaseUrl(id, request.getContextPath())+"/druck");
+		mav.addObject("borderStyle", "solid");
+		mav.addObject("forEdit", true);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/aushaenge/{id}/druck", method = RequestMethod.GET) 
+	public ModelAndView print(@PathVariable("id") String id, HttpServletRequest request) {
+		ModelAndView mav = getInternal(id, "print", request);
+		mav.addObject("borderStyle", "none");
+		mav.addObject("forEdit", false);
+		return mav;
+	}
+
+
+	private ModelAndView getInternal(String id, String template, HttpServletRequest request) {
+		String contextPath = request.getContextPath();
+		
 		Flypost flypost = application.getFlypost(id);
 		ViewModel viewModel = new ViewModel();
 		viewModel.setHeadline(flypost.getHeadline());
 		viewModel.setDescription(flypost.getDescription());
 		viewModel.setContactData(flypost.getContactData());
 		
-		ModelAndView mav = new ModelAndView("edit", "command", viewModel);
+		ModelAndView mav = new ModelAndView(template, "command", viewModel);
 		mav.addObject("context", request.getContextPath());
 		String imageId = flypost.getImageId();
 		if (imageId != null) {
-			mav.addObject("imageUrl", flypost.getId()+"/image");
+			mav.addObject("imageUrl", getBaseUrl(id, contextPath)+"/image");
 		}
-		mav.addObject("qrCodeUrl", flypost.getId()+"/qr");
+		mav.addObject("qrCodeUrl", getBaseUrl(id, contextPath)+"/qr");
 		
 		return mav;
+	}
+	
+	private String getBaseUrl(String id, String contextPath) {
+		return contextPath+"/aushaenge/"+id;
 	}
 
 }

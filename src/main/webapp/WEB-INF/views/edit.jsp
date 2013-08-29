@@ -2,26 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
-		<style type="text/css">
-			h1 { font-size: 1.8em; font-weight: normal; font-family: 'Times New Roman'; }
-
-			.aspectwrapper {
-			display: inline-block; /* shrink to fit */
-			width: 30%; /* whatever width you like */
-			position: relative; /* so .content can use position: absolute */
-			}
-			.aspectwrapper::after {
-			padding-top: 141.4285714%; /* percentage of containing block _width_ */
-			display: block;
-			content: '';
-			}
-			.content {
-			position: absolute;
-			top: 0; bottom: 0; right: 0; left: 0; /* follow the parent's edges */
-			outline: thin solid black; /* just so you can see the box */
-			}
-
-		</style>
+		<link rel="stylesheet" type="text/css" href="${context}/css/edit.css">
+		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js" > </script> 
 	</head>
 		<body>
 	    <h1>Flypost</h1>
@@ -32,117 +14,29 @@
 						<tr style="width:100%;border-style:none"><td>Dein Paper-Post</td></tr>
 						<tr style="width:100%;border-style:none">
 							<td style="width:70%;border-style:none">Ausdrucken und verteilen</td>	
-							<td style="width:30%;border-style:none;text-align:right">
-								<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none; width:20%;">			
+							<td style="width:30%;border-style:none;text-align:right" align="right">
+								<div style="float:right;overflow-y: auto; margin-left:5%;">
+									<input id="saveIcon" type="image" src="${context}/icons/save-icon-small-inactive.png" alt="Speichern und Veröffentlichen" style="align:right;border-style:none;">
+								</div>
+								<div style="float:right;overflow-y: auto;margin-left:5%;">
+									<a href="javascript:print($('#flypost'));">
+										<img src="${context}/icons/print.png" alt="Drucken" title="Drucken" style="align:right;border-style:none;">
+									</a>
+								</div>
+								<div style="float:right;overflow-y: auto;">
+									<a href="${context}/einloggen" style="height:100%;">
+										<img src="${context}/icons/login.png" alt="Einloggen" title="Einloggen" style="align:right;border-style:none;height:100%;">
+									</a>
+								</div>								
+											
 							</td>
 						</tr>
 					</table>
 				</div>
-			
 	    	</div>
-		    <div class="aspectwrapper">
-				<div class="content">
-				
-					<div style="margin-top:2%; width:100%; border-style:none;">
-						<form:input id="headline" path="headline" type="text" placeholder="Überschrift hier eingeben" style="border:LightGray 1px solid;margin-left:5%;margin-right:5%;width:90%;" />
-					</div>
-					
-					<div style="margin-top:2%; width:100%; border-style:none;">
-						<div style="border:grey 1px dashed;margin-left:5%;margin-right:5%;width:90%; height:30%">
-							<input type="file" id="files" name="image" style="height:20%" />
-							<div id="imageArea">
-								<c:if test="${imageUrl != null}">
-									<img class="thumb" src="${imageUrl}" style="height:80%" />
-								</c:if>
-							</div>
-						</div>
-					</div>
-					<div style="margin-top:1%; width:100%; border-style:none;">
-						<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border:LightGray 1px solid; margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
-					</div>
-					<div style="margin-top:1%; width:100%; border-style:none;">
-						<div style="border-style:none;margin-left:5%;margin-right:5%;margin-bottom:1%;width:90%; height:10%">
-							<span>
-								<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border:LightGray 1px solid;height:100%;width:80%;"></form:textarea>
-							</span>
-							<span>
-								<img id="qrCode" src="${qrCodeUrl}" height="100%">
-							</span>
-							
-						</div>
-					</div>
-					<div style="margin-top:1px; margin-left:0px; width:100%; border-top: gray 2px dashed; height:30%;">
-						<%for (int i = 0; i < 5; i++) {%>
-					
-							<div style="margin:0px; width:16.5%; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-								<!-- table style="height:100%; border-style:none;">
-									<tr style="height:100%;">
-										<td id="sheetCell" style="width:20%;" rowspan="2">
-											<div id="sheet" 
-												style="
-												float: left; 
-	    										position: relative;
-											    -moz-transform: rotate(270deg);  /* FF3.5+ */        
-											    -o-transform: rotate(270deg);  /* Opera 10.5 */   
-											    -webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
-											    filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
-											    -ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */ 
-											    font-size:0.7em;          
-											">
-												${command.headline}
-											</div>
-										</td>
-										<td style="width:80%; height:20%;" valign="top">
-											<img id="qrCode" src="${qrCodeUrl}" width="100%">
-										<td>
-									</tr>
-									<tr>
-										<td>D</td>
-									</tr>
-								</table>
-								 -->
-								 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
-											 -o-transform: rotate(270deg);  /* Opera 10.5 */   
-											    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
-											    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
-											    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
-											    		position:relative; left:-50%; top:40%; font-size:0.7em; width:200%">
-								 	<div>
-								 		${command.headline}
-								 	</div>	
-								 	<div style="float:left; width:75%;">
-								 		${command.contactData}
-								 	</div>
-								 	<div>
-								 		<img src="${qrCodeUrl}" width="25%">
-								 	</div>
-								 </div>
-							</div>
-						<%} %>
-						
-						<div style="margin:0px; width:16.5%; border-style:none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-								 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
-											 -o-transform: rotate(270deg);  /* Opera 10.5 */   
-											    		-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
-											    		filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
-											    		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
-											    		position:relative; left:-50%; top:40%; font-size:0.7em; width:200%">
-								 	<div>
-								 		${command.headline}
-								 	</div>	
-								 	<div style="float:left; width:75%;">
-								 		${command.contactData}
-								 	</div>
-								 	<div>
-								 		<img src="${qrCodeUrl}" width="25%">
-								 	</div>
-								 </div>
-							</div>
-						
-					</div>
-					
-				</div>
-		  	</div>
+	    	
+	    	<%@include file="flypost.jsp" %>
+		    
 	    </form:form>	
 	</body>
 
@@ -190,6 +84,16 @@
       document.getElementById('files').addEventListener('change', modified, false);
       document.getElementById('description').addEventListener('keydown', modified, false);
       document.getElementById('contactData').addEventListener('keydown', modified, false);
+      
+      function print(div) {
+    	  var data = div.html();
+    	  var mywindow = window.open('${printUrl}', 'Druckansicht', 'height=594,width=420');;
+		  
+          mywindow.print();
+          //mywindow.close();
+
+          return true;
+      }
     
    </script>
 </html>

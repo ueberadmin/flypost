@@ -34,6 +34,18 @@ http://www.springframework.org/schema/data/mongo http://www.springframework.org/
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	    <property name="favorPathExtension" value="false"/>
+	    <property name="favorParameter" value="true"/>
+	    <property name="mediaTypes">
+	        <value>
+	            js=application/javascript
+	            css=text/css
+	            png=image/png
+	        </value>
+	    </property>
+	</bean>
+	
 	<bean class="com.mongodb.MongoURI" id="mongoURI">
         <constructor-arg value="${MONGOLAB_URI:mongodb://127.0.0.1:27017/flypost}" />
     </bean>
