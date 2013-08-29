@@ -3,6 +3,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="${context}/css/edit.css">
+		<c:if test="${!forEdit}">
+			<link rel="stylesheet" type="text/css" href="${context}/css/readonly.css">
+		</c:if>
 		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js"></script>
 		<script type="text/javascript">
 			function updateSize() {
