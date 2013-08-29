@@ -24,7 +24,7 @@
 				<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border:LightGray 1px ${borderStyle}; margin-left:5%;margin-right:5%;width:90%;height:20%"></form:textarea>
 			</c:if>
 			<c:if test="${!showSheets}">
-				<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border:LightGray 1px ${borderStyle}; margin-left:5%;margin-right:5%;width:90%;height:30%"></form:textarea>
+				<form:textarea id="description" path="description" placeholder="Hier eine ausführliche Beschreibung eingeben." style="border:LightGray 1px ${borderStyle}; margin-left:5%;margin-right:5%;width:90%;height:40%"></form:textarea>
 			</c:if>
 		</div>
 		<div style="margin-top:1%; width:100%; border-style:none;">
