@@ -27,11 +27,10 @@
 				<span>
 					<form:textarea id="contactData" path="contactData" placeholder="Ihre Kontaktdaten" style="border:LightGray 1px ${borderStyle};height:100%;width:80%;"></form:textarea>
 				</span>
-				<c:if test="${showSheets}">
-					<span>
-						<img id="qrCode" src="${qrCodeUrl}" height="100%">
-					</span>
-				</c:if>
+				
+				<span>
+					<img id="qrCode" src="${qrCodeUrl}" height="100%">
+				</span>
 			</div>
 		</div>
 		<c:if test="${showSheets}">

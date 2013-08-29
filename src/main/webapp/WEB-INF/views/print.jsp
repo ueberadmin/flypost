@@ -3,7 +3,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="${context}/css/print.css">
-		<link rel="stylesheet" type="text/css" href="${context}/css/readonly.css">
 	</head>
 	
 	<body>
