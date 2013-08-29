@@ -39,7 +39,7 @@ public class ShowFlypostController {
 		mav.addObject("printUrl", getBaseUrl(id, request.getContextPath())+"/druck");
 		mav.addObject("borderStyle", borderStyle);
 		mav.addObject("forEdit", isEditable);
-		mav.addObject("showSheets", true);
+		mav.addObject("showSheets", isEditable);
 		mav.addObject("isLoggedIn", isLoggedIn);
 		mav.addObject("currentUrl", request.getRequestURL().toString());
 		

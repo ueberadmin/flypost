@@ -15,3 +15,7 @@ position: absolute;
 top: 0; bottom: 0; right: 0; left: 0; /* follow the parent's edges */
 outline: thin solid black; /* just so you can see the box */
 }
+
+textarea { 
+    resize: none; 
+}
