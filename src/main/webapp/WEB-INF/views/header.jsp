@@ -1,4 +1,4 @@
 <div id="header">
-	<h1>Zettl</h1>
-	<div>Deine Stimme auf der Stra√üe</div>
+	<h1 id="header_headline">Zettl</h1>
+	<div id="header_text">Deine Stimme auf der Straﬂe</div>
 </div>

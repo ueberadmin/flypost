@@ -1,22 +1,37 @@
 .flypost {
-	border-style: solid;
-	width: 100%;
-	height: 100%;
+	border-style: none;
+	width: 420px;
+	height: 594px;
 }
 
 .headline {
-	height: 10%;
-	font-size: 1.2em;
+	height: 20px;
+	font-size: 1.4em;
 	font-weigth: bold;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.imageAndDescription {
+	height: 300px;
+	width: 350px;
+}
+
+.image {
+	width: 350px;
+	text-align: center;
 }
 
 .description {
-	height: 68%;
-	border-style: dashed;
+	margin-top: 10px;
+	border-style: none;
 }
 
 .sheets {
-	height: 20%
+	position: absolute;
+	top: 470px;
+	height: 106px;
+	border-top: grey 2px dashed;
 }
 
 .sheet {
@@ -31,3 +46,4 @@
 	font-size:0.7em;
 	width:200%
 }
+

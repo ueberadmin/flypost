@@ -15,6 +15,12 @@ function updateMainSize() {
 	all.style.height = newHeight;
 	all.style.width = newWidth;
 	
+	var preferedWidth = 420;
+	var ratio = newWidth / 420;
+	
+	document.getElementById('header_headline').style.fontSize = (ratio * 220)+'%';
+	document.getElementById('header_text').style.fontSize = (ratio*100)+'%';
+	
 
 	var footer = document.getElementById('footer');
 	footer.style.marginTop = (newHeight * 0.95) + 'px';

@@ -14,7 +14,7 @@
 		</div>
 		
 		<a href="javascript:print('${id}', '${context}');">
-			Abrei$szlig;zettel drucken
+			Abreißzettel drucken
 		</a>
 		
 		<%@include file="/WEB-INF/views/footer.jsp" %>

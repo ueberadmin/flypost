@@ -1,13 +1,21 @@
 package de.ueberproduct.zettl.usecase.edit;
 
+import java.io.IOException;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.mongodb.gridfs.GridFSFile;
 
 import de.ueberproduct.zettl.domain.Zettl;
 
@@ -19,15 +27,24 @@ public class EditZettlApplication {
 	@Resource
 	private MongoOperations mongoOperations;
 	
+	@Resource
+	private GridFsOperations gridFsOperations;
+	
 	Zettl getZettl(String id) {
 		Zettl zettl = loadZettl(id);
 		return zettl;
 	}
 	
-	void setDescription(String id, String description, Set<String> tokens) {
+	void setDescriptionAndImage(String id, String description, MultipartFile image, Set<String> tokens) throws IOException {
 		Zettl zettl = loadZettl(id);		
 		
 		zettl.setDescription(description);
+		
+		if (image != null && !image.isEmpty()) {
+			deleteOldImage(zettl);
+			GridFSFile gridFSFile = gridFsOperations.store(image.getInputStream(), image.getName(), image.getContentType());
+			zettl.setImageId(gridFSFile.getId().toString());
+		}
 		
 		save(zettl, tokens);
 	}
@@ -68,7 +85,13 @@ public class EditZettlApplication {
 	}
 
 
-
+	private void deleteOldImage(Zettl flypost) {
+		String imageId = flypost.getImageId();
+		if (imageId != null) {
+			gridFsOperations.delete(new Query(Criteria.where("_id").is(new ObjectId(flypost.getImageId()))));
+			flypost.setImageId(null);
+		}
+	}
 	
 
 }

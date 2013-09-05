@@ -26,10 +26,15 @@ public class ShowZettlController {
 	
 	@RequestMapping(value = "/anschauen/{id}/abreisszettel", method = RequestMethod.GET)
 	public ModelAndView printFlypost(@PathVariable("id") String id, HttpServletRequest request) {
+		String context = request.getContextPath();
 		ModelAndView mav = new ModelAndView("show/flypost");
 		ViewModel vm = application.find(id);
 		mav.addObject("vm", vm);
-		mav.addObject("context", request.getContextPath());
+		String imageId = vm.getImageId();
+		if (imageId != null) {
+			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
+		}
+		mav.addObject("context", context);
 		return mav;
 	}
 	

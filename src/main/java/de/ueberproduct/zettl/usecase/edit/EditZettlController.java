@@ -1,5 +1,7 @@
 package de.ueberproduct.zettl.usecase.edit;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import de.ueberproduct.zettl.domain.Zettl;
@@ -34,14 +37,19 @@ public class EditZettlController {
 		ViewModel viewModel = new ViewModel();
 		viewModel.setDescription(zettl.getDescription());
 		
+		String context = request.getContextPath();
 		ModelAndView mav = new ModelAndView("edit/description", "command", viewModel);
-		mav.addObject("context", request.getContextPath());
+		String imageId = zettl.getImageId();
+		if (imageId != null) {
+			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
+		}
+		mav.addObject("context", context);
 		return mav;
 	}
 	
 	@RequestMapping(value = "/bearbeiten/{id}/beschreibung", method = RequestMethod.POST)
-	public String changeDescription(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) {
-		application.setDescription(id, viewModel.getDescription(), sessionData.getTokens());
+	public String changeDescription(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException {
+		application.setDescriptionAndImage(id, viewModel.getDescription(), viewModel.getImage(), sessionData.getTokens());
 		return "redirect:/bearbeiten/"+id+"/ort";
 	}
 	
@@ -79,6 +87,8 @@ public class EditZettlController {
 		private String postCode;
 		private String city;
 		private String radius;
+		
+		private MultipartFile image;
 		
 		public String getEmailAddress() {
 			return emailAddress;
@@ -126,6 +136,14 @@ public class EditZettlController {
 		
 		public void setDescription(String description) {
 			this.description = description;
+		}
+		
+		public MultipartFile getImage() {
+			return image;
+		}
+		
+		public void setImage(MultipartFile image) {
+			this.image = image;
 		}
 	}
 
