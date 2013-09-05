@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.ueberproduct.flypost</groupId>
-  <artifactId>flypost</artifactId>
+  <groupId>de.ueberproduct.zettl</groupId>
+  <artifactId>zettl</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>Flypost Webapp</name>
+  <name>Zettl Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>  
   	<org.springframework.version>3.2.4.RELEASE</org.springframework.version>  
@@ -131,7 +131,7 @@
             
   </dependencies>
   <build>
-    <finalName>flypost</finalName>
+    <finalName>zettl</finalName>
     <plugins>
     	<plugin>
 	         <groupId>org.apache.maven.plugins</groupId>

@@ -1,0 +1,35 @@
+.footer {
+	width: 100%;
+	border-top-style: solid;	
+}
+
+.footer_left {
+	float: left;
+	text-align:left;
+}
+
+.footer_right {
+	text-align:right;
+}
+
+.aspectwrapper {
+	display: inline-block; /* shrink to fit */
+	width: 30%; /* whatever width you like */
+	position: relative; /* so .content can use position: absolute */
+	margin-left: 2%;
+}
+.aspectwrapper::after {
+	padding-top: 141.4285714%; /* percentage of containing block _width_ */
+	display: block;
+	content: '';
+}
+.content {
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0; /* follow the parent's edges */
+	border: thin dashed black; /* just so you can see the box */
+}
+
+
+.specificContent {
+	margin-top: 5%;
+}

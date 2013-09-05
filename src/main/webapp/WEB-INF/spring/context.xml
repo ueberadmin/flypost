@@ -18,7 +18,7 @@ http://www.springframework.org/schema/data/mongo http://www.springframework.org/
     <context:property-placeholder/>
 	
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
-	<context:component-scan base-package="de.ueberproduct.flypost" />
+	<context:component-scan base-package="de.ueberproduct.zettl" />
 
 	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />
