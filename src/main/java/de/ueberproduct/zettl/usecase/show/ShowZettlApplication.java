@@ -55,13 +55,16 @@ public class ShowZettlApplication {
 		String[] words = description.split(" ");
 		StringBuilder headline = new StringBuilder();
 		StringBuilder newDescription = new StringBuilder();
+		
+		boolean headlineDone = false;
 		for (int i=0; i<words.length; i++) {
 			String nextWord = words[i];
 			int currentLength = headline.length();
 			int nextWordLength = nextWord.length();
-			if ((currentLength + nextWordLength + 1) <= MAX_HEADLINE_LENGTH) {
+			if (!headlineDone && ((currentLength + nextWordLength + 1) <= MAX_HEADLINE_LENGTH)) {
 				headline.append(nextWord).append(" ");
 			} else {
+				headlineDone = true;
 				newDescription.append(nextWord).append(" ");
 			}
 		}
