@@ -1,5 +1,7 @@
 package de.ueberproduct.zettl.usecase.show;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -16,15 +18,26 @@ public class ShowZettlApplication {
 	private MongoOperations mongoOperations;
 	
 	public ViewModel find(String id) {
+		return find(id, null);
+	}
+	
+	public ViewModel find(String id, Set<String> tokens) {
 		Zettl zettl = mongoOperations.findById(id, Zettl.class);
+		
 		
 		String description = zettl.getDescription().trim();
 		HeadlineAndDescription headlineAndDescription = getHeadline(description);
-		return new ViewModel.Builder().headline(headlineAndDescription.getHeadline())
-									  .description(headlineAndDescription.getDescription())
-									  .contactData(zettl.getEmailAddress())
-									  .imageId(zettl.getImageId())
-									  .get();
+		ViewModel.Builder builder = new ViewModel.Builder().headline(headlineAndDescription.getHeadline())
+									  					   .description(headlineAndDescription.getDescription())
+									  					   .contactData(zettl.getEmailAddress())
+									  					   .imageId(zettl.getImageId());
+		
+		String token = zettl.getEditToken();
+		if (tokens != null && token != null && tokens.contains(token)) {
+			builder.editToken(token);
+		}
+		
+		return builder.get();
 	}
 	
 	private HeadlineAndDescription getHeadline(String description) {

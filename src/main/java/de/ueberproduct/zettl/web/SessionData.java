@@ -18,4 +18,8 @@ public class SessionData implements Serializable {
 	public Set<String> getTokens() {
 		return tokens;
 	}
+	
+	public void addToken(String token) {
+		tokens.add(token);
+	}
 }

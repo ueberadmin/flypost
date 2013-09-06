@@ -17,9 +17,9 @@
 						<img src="${imageUrl}" width="100%" border="0">
 					</div>
 				</c:if>
-				<div class="description">
+				<textarea class="description">
 					${vm.description}
-				</div>
+				</textarea>
 			</div>
 			<div class="sheets">
 			<%for (int i = 0; i < 5; i++) {%>

@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
 		<title>Zettl</title>
@@ -13,9 +14,17 @@
 			${description}
 		</div>
 		
-		<a href="javascript:print('${id}', '${context}');">
-			Abreiﬂzettel drucken
-		</a>
+		<div>
+			<a href="javascript:print('${id}', '${context}');">
+				Abreiﬂzettel drucken
+			</a>
+		</div>
+		
+		<c:if test="${editUrl != null}">
+			<div>
+				<a href="${editUrl}">Bearbeiten</a>
+			</div>
+		</c:if>
 		
 		<%@include file="/WEB-INF/views/footer.jsp" %>
 	</body>

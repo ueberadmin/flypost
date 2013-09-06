@@ -26,6 +26,10 @@ http://www.springframework.org/schema/data/mongo http://www.springframework.org/
 	<!-- Forwards requests to the "/" resource to the "welcome" view -->
 	<mvc:view-controller path="/" view-name="index"/>
 	
+	<mvc:interceptors>
+  		<bean class="de.ueberproduct.zettl.web.StoreTokenInterceptor" />
+	</mvc:interceptors> 
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->

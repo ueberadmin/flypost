@@ -9,18 +9,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import de.ueberproduct.zettl.web.SessionData;
+
 @Controller
 public class ShowZettlController {
 	
 	@Resource
 	private ShowZettlApplication application;
 	
+	@Resource
+	private SessionData sessionData;
+	
 	@RequestMapping(value = "/anschauen/{id}", method = RequestMethod.GET) 
 	public ModelAndView show(@PathVariable("id") String id, HttpServletRequest request) {
-		
+		ViewModel vm = application.find(id, sessionData.getTokens());
+		String context = request.getContextPath();
 		ModelAndView mav = new ModelAndView("show/overview");
-		mav.addObject("context", request.getContextPath());
+		mav.addObject("context", context);
 		mav.addObject("id", id);
+		if (vm.getEditToken() != null) {
+			String editUrl = context+"/bearbeiten/" + id + "?auth="+vm.getEditToken();
+			mav.addObject("editUrl", editUrl);
+		}
 		return mav;
 	}
 	
@@ -34,6 +44,9 @@ public class ShowZettlController {
 		if (imageId != null) {
 			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
 		}
+		
+		
+		
 		mav.addObject("context", context);
 		return mav;
 	}

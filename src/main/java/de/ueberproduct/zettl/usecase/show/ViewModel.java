@@ -6,12 +6,14 @@ public class ViewModel {
 	private final String description;
 	private final String contactData;
 	private final String imageId;
+	private final String editToken;
 	
 	private ViewModel(Builder builder) {
 		this.headline = builder.headline;
 		this.description = builder.description;
 		this.contactData = builder.contactData;
 		this.imageId = builder.imageId;
+		this.editToken = builder.editToken;
 	}
 	
 	public String getHeadline() {
@@ -30,11 +32,16 @@ public class ViewModel {
 		return imageId;
 	}
 	
+	public String getEditToken() {
+		return editToken;
+	}
+	
 	public static class Builder {
 		private String headline;
 		private String description;
 		private String contactData;
 		private String imageId;
+		private String editToken;
 		
 		public Builder headline(String value) {
 			this.headline = value;
@@ -53,6 +60,11 @@ public class ViewModel {
 		
 		public Builder imageId(String value) {
 			this.imageId = value;
+			return this;
+		}
+		
+		public Builder editToken(String value) {
+			this.editToken = value;
 			return this;
 		}
 		
