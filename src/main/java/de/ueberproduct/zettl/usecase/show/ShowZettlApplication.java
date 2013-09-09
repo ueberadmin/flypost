@@ -46,7 +46,7 @@ public class ShowZettlApplication {
 		}
 		
 		int firstLineBreak = description.indexOf("\n");
-		if (firstLineBreak <= MAX_HEADLINE_LENGTH) {
+		if (firstLineBreak > 0 && firstLineBreak <= MAX_HEADLINE_LENGTH) {
 			String headline = description.substring(0, firstLineBreak);
 			String newDescription = description.length()>firstLineBreak?description.substring(firstLineBreak+1).trim():"";
 			return new HeadlineAndDescription(headline, newDescription);
