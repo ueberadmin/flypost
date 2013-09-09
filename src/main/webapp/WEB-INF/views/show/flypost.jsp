@@ -14,14 +14,16 @@
 				<div style="height: 40%;">
 					<img src="${imageUrl}" style="width: 100%; border-style: none;">
 				</div>
-				<textarea style="width:100%; height: 35%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
+				<textarea style="width:100%; height: 28%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
 			</c:if>
 			<c:if test="${imageUrl == null}">
-				<textarea style="width:100%; height: 75%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
+				<textarea style="width:100%; height: 68%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
 			</c:if>
+			<div style="height: 10%; margin: 1px; text-align: right;">
+				<img src="${qrCodeUrl}" style="border-style: none; height: 100%;">
+			</div>
 			
-			
-			<div style="width:100%; height: 20%; border-top-style: dashed; border-width: 1px;">
+			<div style="width:100%; height: 19%; border-top-style: dashed; border-width: 1px;">
 			
 				<%for (int i = 0; i < 5; i++) {%>
 			

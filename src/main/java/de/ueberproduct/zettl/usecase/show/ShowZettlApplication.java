@@ -24,7 +24,6 @@ public class ShowZettlApplication {
 	public ViewModel find(String id, Set<String> tokens) {
 		Zettl zettl = mongoOperations.findById(id, Zettl.class);
 		
-		
 		String description = zettl.getDescription().trim();
 		HeadlineAndDescription headlineAndDescription = getHeadline(description);
 		ViewModel.Builder builder = new ViewModel.Builder().headline(headlineAndDescription.getHeadline())

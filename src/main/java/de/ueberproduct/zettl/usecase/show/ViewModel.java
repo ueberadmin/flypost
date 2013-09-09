@@ -7,6 +7,7 @@ public class ViewModel {
 	private final String contactData;
 	private final String imageId;
 	private final String editToken;
+	private final String bitlyUrl;
 	
 	private ViewModel(Builder builder) {
 		this.headline = builder.headline;
@@ -14,6 +15,7 @@ public class ViewModel {
 		this.contactData = builder.contactData;
 		this.imageId = builder.imageId;
 		this.editToken = builder.editToken;
+		this.bitlyUrl = builder.bitlyUrl;
 	}
 	
 	public String getHeadline() {
@@ -36,12 +38,17 @@ public class ViewModel {
 		return editToken;
 	}
 	
+	public String getBitlyUrl() {
+		return bitlyUrl;
+	}
+	
 	public static class Builder {
 		private String headline;
 		private String description;
 		private String contactData;
 		private String imageId;
 		private String editToken;
+		private String bitlyUrl;
 		
 		public Builder headline(String value) {
 			this.headline = value;
@@ -65,6 +72,11 @@ public class ViewModel {
 		
 		public Builder editToken(String value) {
 			this.editToken = value;
+			return this;
+		}
+		
+		public Builder bitlyUrl(String value) {
+			this.bitlyUrl = value;
 			return this;
 		}
 		

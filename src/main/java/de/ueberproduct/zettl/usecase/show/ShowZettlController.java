@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import de.ueberproduct.zettl.web.SessionData;
+import de.ueberproduct.zettl.web.Urls;
 
 @Controller
 public class ShowZettlController {
@@ -20,7 +21,7 @@ public class ShowZettlController {
 	@Resource
 	private SessionData sessionData;
 	
-	@RequestMapping(value = "/anschauen/{id}", method = RequestMethod.GET) 
+	@RequestMapping(value = Urls.FOR_OVERVIEW, method = RequestMethod.GET) 
 	public ModelAndView show(@PathVariable("id") String id, HttpServletRequest request) {
 		ViewModel vm = application.find(id, sessionData.getTokens());
 		String context = request.getContextPath();
@@ -45,7 +46,7 @@ public class ShowZettlController {
 			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
 		}
 		
-		
+		mav.addObject("qrCodeUrl", context+"/anschauen/"+id+"/qr");
 		
 		mav.addObject("context", context);
 		return mav;

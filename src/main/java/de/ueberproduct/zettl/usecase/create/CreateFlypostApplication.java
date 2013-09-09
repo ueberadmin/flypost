@@ -14,8 +14,11 @@ public class CreateFlypostApplication {
 	private MongoOperations mongoOperations;
 
 	public String create(String username) {
+		
 		Zettl flypost = new Zettl(username);
 		mongoOperations.save(flypost);
+		
+		
 		
 		return flypost.getId();
 	}

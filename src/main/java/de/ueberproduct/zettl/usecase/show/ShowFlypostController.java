@@ -11,13 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import de.ueberproduct.zettl.domain.Zettl;
 import de.ueberproduct.zettl.usecase.edit.ViewModel;
-import de.ueberproduct.zettl.web.SessionData;
 
 @Controller
 public class ShowFlypostController {
-	
-	@Resource
-	private SessionData sessionData;
 	
 	@Resource
 	private ShowFlypostApplication application;

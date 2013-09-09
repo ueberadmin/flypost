@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ShowQRCodeController {
 	
-	@RequestMapping(value = "/aushaenge/{id}/qr", method = RequestMethod.GET)
+	@RequestMapping(value = "/anschauen/{id}/qr", method = RequestMethod.GET)
 	public void showQRCode(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		StringBuffer urlBuffer = request.getRequestURL();
 		String url = urlBuffer.substring(0, urlBuffer.length()-"/qr".length());

@@ -28,7 +28,7 @@ public class Zettl {
 	public Zettl(String editToken) {
 		this.editToken = editToken;
 	}
-
+	
 	public String getId() {
 		return id;
 	}
