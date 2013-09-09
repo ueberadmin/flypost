@@ -5,9 +5,14 @@ public class ViewModel {
 	private final String headline;
 	private final String description;
 	private final String contactData;
+	private final String street;
+	private final String postcode;
+	private final String city;
 	private final String imageId;
 	private final String editToken;
-	private final String bitlyUrl;
+	private final String lon;
+	private final String lat;
+
 	
 	private ViewModel(Builder builder) {
 		this.headline = builder.headline;
@@ -15,7 +20,23 @@ public class ViewModel {
 		this.contactData = builder.contactData;
 		this.imageId = builder.imageId;
 		this.editToken = builder.editToken;
-		this.bitlyUrl = builder.bitlyUrl;
+		this.street = builder.street;
+		this.postcode = builder.postcode;
+		this.city = builder.city;
+		this.lon = builder.lon;
+		this.lat = builder.lat;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getPostcode() {
+		return postcode;
+	}
+	
+	public String getStreet() {
+		return street;
 	}
 	
 	public String getHeadline() {
@@ -38,8 +59,12 @@ public class ViewModel {
 		return editToken;
 	}
 	
-	public String getBitlyUrl() {
-		return bitlyUrl;
+	public String getLat() {
+		return lat;
+	}
+	
+	public String getLon() {
+		return lon;
 	}
 	
 	public static class Builder {
@@ -48,7 +73,11 @@ public class ViewModel {
 		private String contactData;
 		private String imageId;
 		private String editToken;
-		private String bitlyUrl;
+		private String street;
+		private String postcode;
+		private String city;
+		private String lon;
+		private String lat;
 		
 		public Builder headline(String value) {
 			this.headline = value;
@@ -75,8 +104,28 @@ public class ViewModel {
 			return this;
 		}
 		
-		public Builder bitlyUrl(String value) {
-			this.bitlyUrl = value;
+		public Builder street(String value) {
+			this.street = value;
+			return this;
+		}
+		
+		public Builder postcode(String value) {
+			this.postcode = value;
+			return this;
+		}
+		
+		public Builder city(String value) {
+			this.city = value;
+			return this;
+		}
+		
+		public Builder lon(String value) {
+			this.lon = value;
+			return this;
+		}
+		
+		public Builder lat(String value) {
+			this.lat = value;
 			return this;
 		}
 		

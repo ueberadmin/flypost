@@ -21,19 +21,19 @@ public class ShowZettlController {
 	@Resource
 	private SessionData sessionData;
 	
-	@RequestMapping(value = Urls.FOR_OVERVIEW, method = RequestMethod.GET) 
-	public ModelAndView show(@PathVariable("id") String id, HttpServletRequest request) {
-		ViewModel vm = application.find(id, sessionData.getTokens());
-		String context = request.getContextPath();
-		ModelAndView mav = new ModelAndView("show/overview");
-		mav.addObject("context", context);
-		mav.addObject("id", id);
-		if (vm.getEditToken() != null) {
-			String editUrl = context+"/bearbeiten/" + id + "?auth="+vm.getEditToken();
-			mav.addObject("editUrl", editUrl);
-		}
-		return mav;
-	}
+//	@RequestMapping(value = Urls.FOR_OVERVIEW, method = RequestMethod.GET) 
+//	public ModelAndView show(@PathVariable("id") String id, HttpServletRequest request) {
+//		ViewModel vm = application.find(id, sessionData.getTokens());
+//		String context = request.getContextPath();
+//		ModelAndView mav = new ModelAndView("show/overview");
+//		mav.addObject("context", context);
+//		mav.addObject("id", id);
+//		if (vm.getEditToken() != null) {
+//			String editUrl = context+"/bearbeiten/" + id + "?auth="+vm.getEditToken();
+//			mav.addObject("editUrl", editUrl);
+//		}
+//		return mav;
+//	}
 	
 	@RequestMapping(value = "/anschauen/{id}/abreisszettel", method = RequestMethod.GET)
 	public ModelAndView printFlypost(@PathVariable("id") String id, HttpServletRequest request) {
@@ -49,6 +49,23 @@ public class ShowZettlController {
 		mav.addObject("qrCodeUrl", context+"/anschauen/"+id+"/qr");
 		
 		mav.addObject("context", context);
+		return mav;
+	}
+	
+	@RequestMapping(value = Urls.FOR_OVERVIEW, method = RequestMethod.GET)
+	public ModelAndView showMap(@PathVariable("id") String id, HttpServletRequest request) {
+		ViewModel vm = application.find(id);
+		
+		String context = request.getContextPath();
+		ModelAndView mav = new ModelAndView("show/map");
+		mav.addObject("context", context);
+		mav.addObject("vm", vm);
+		
+		String imageId = vm.getImageId();
+		if (imageId != null) {
+			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
+		}
+		
 		return mav;
 	}
 	

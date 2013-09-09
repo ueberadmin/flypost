@@ -17,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mongodb.gridfs.GridFSFile;
 
+import de.ueberproduct.zettl.domain.Geodata;
 import de.ueberproduct.zettl.domain.Zettl;
+import de.ueberproduct.zettl.osm.GeodataService;
 
 @Component
 public class EditZettlApplication {
@@ -29,6 +31,9 @@ public class EditZettlApplication {
 	
 	@Resource
 	private GridFsOperations gridFsOperations;
+	
+	@Resource
+	private GeodataService geodataService;
 	
 	Zettl getZettl(String id) {
 		Zettl zettl = loadZettl(id);
@@ -50,18 +55,25 @@ public class EditZettlApplication {
 	}
 	
 
-	void setLocation(String id, EditZettlController.ViewModel viewModel, Set<String> tokens) {
+	void setLocation(String id, EditZettlController.ViewModel viewModel, Set<String> tokens) throws IOException {
+		String street = viewModel.getStreet();
+		String postcode = viewModel.getPostCode();
+		String city = viewModel.getCity();
+		
 		Zettl zettl = loadZettl(id);
 		zettl.setEmailAddress(viewModel.getEmailAddress());
-		zettl.setStreet(viewModel.getStreet());
-		zettl.setPostCode(viewModel.getPostCode());
-		zettl.setCity(viewModel.getCity());
+		zettl.setStreet(street);
+		zettl.setPostCode(postcode);
+		zettl.setCity(city);
 		
 		try {
 			zettl.setRadius(viewModel.getRadius());
 		} catch (NumberFormatException e) {
 			logger.info("Invalid radius", e);
 		}
+		
+		Geodata geodata = geodataService.find(street, postcode, city);
+		zettl.setGeodata(geodata);
 		
 		save(zettl, tokens);
 	}
@@ -93,5 +105,5 @@ public class EditZettlApplication {
 		}
 	}
 	
-
+	
 }

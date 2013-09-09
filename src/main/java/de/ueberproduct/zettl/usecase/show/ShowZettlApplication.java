@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
 
+import de.ueberproduct.zettl.domain.Geodata;
 import de.ueberproduct.zettl.domain.Zettl;
 
 @Component
@@ -23,18 +24,32 @@ public class ShowZettlApplication {
 	
 	public ViewModel find(String id, Set<String> tokens) {
 		Zettl zettl = mongoOperations.findById(id, Zettl.class);
+		Geodata geodata = zettl.getGeodata();
+		if (geodata == null) {
+			// Berlin
+			geodata = new Geodata(52.5170365, 13.3888599);
+		}
 		
 		String description = zettl.getDescription().trim();
 		HeadlineAndDescription headlineAndDescription = getHeadline(description);
 		ViewModel.Builder builder = new ViewModel.Builder().headline(headlineAndDescription.getHeadline())
 									  					   .description(headlineAndDescription.getDescription())
 									  					   .contactData(zettl.getEmailAddress())
-									  					   .imageId(zettl.getImageId());
+									  					   .imageId(zettl.getImageId())
+									  					   .street(zettl.getStreet())
+									  					   .postcode(zettl.getPostCode())
+									  					   .city(zettl.getCity())
+									  					   .lat(Double.toString(geodata.getLatitude()))
+									  					   .lon(Double.toString(geodata.getLongitude()));
 		
 		String token = zettl.getEditToken();
 		if (tokens != null && token != null && tokens.contains(token)) {
 			builder.editToken(token);
 		}
+		
+		
+		
+		
 		
 		return builder.get();
 	}
@@ -75,12 +90,14 @@ public class ShowZettlApplication {
 		return new HeadlineAndDescription(description.substring(0, MAX_HEADLINE_LENGTH - 3)+"...", description);
 	}
 	
+	
+	
 	private static class HeadlineAndDescription {
 		private final String headline;
 		private final String description;
 		
 		public HeadlineAndDescription(String headline, String description) {
-			this.headline = headline;
+			this.headline = trim(headline);
 			this.description = description;
 		}
 		
@@ -90,6 +107,10 @@ public class ShowZettlApplication {
 		
 		public String getHeadline() {
 			return headline;
+		}
+		
+		private String trim(String toTrim) {
+			return toTrim.replaceAll("\n", " ").trim();
 		}
 	}
 

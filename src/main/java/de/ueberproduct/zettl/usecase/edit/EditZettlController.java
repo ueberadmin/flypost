@@ -53,10 +53,6 @@ public class EditZettlController {
 		return "redirect:/bearbeiten/"+id+"/ort";
 	}
 	
-	
-	
-	
-	
 	@RequestMapping(value = "/bearbeiten/{id}/ort", method = RequestMethod.GET)
 	public ModelAndView showLocation(@PathVariable("id") String id, HttpServletRequest request) {
 		ViewModel viewModel = new ViewModel();
@@ -73,7 +69,7 @@ public class EditZettlController {
 	}
 	
 	@RequestMapping(value = "/bearbeiten/{id}/ort", method = RequestMethod.POST)
-	public String changeLocation(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) {
+	public String changeLocation(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException {
 		application.setLocation(id, viewModel, sessionData.getTokens());
 		return "redirect:/anschauen/"+id;
 	}

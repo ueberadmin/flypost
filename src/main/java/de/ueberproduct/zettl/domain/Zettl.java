@@ -1,11 +1,15 @@
 package de.ueberproduct.zettl.domain;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "zettls")
-public class Zettl {
-	
+public class Zettl implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
 	private String id;
 	private String description;
@@ -15,6 +19,8 @@ public class Zettl {
 	private String city;
 	private String radius;
 	private String imageId;
+	
+	private Geodata geodata;
 	
 	private String headline;
 	private String contactData;
@@ -115,6 +121,14 @@ public class Zettl {
 	
 	public void setHeadline(String headline) {
 		this.headline = headline;
+	}
+	
+	public Geodata getGeodata() {
+		return geodata;
+	}
+	
+	public void setGeodata(Geodata geodata) {
+		this.geodata = geodata;
 	}
 	
 	
