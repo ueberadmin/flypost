@@ -1,32 +1,7 @@
 function init() {
-	updateSize();
 	document.getElementById("description").focus();
 }
 
-
-function updateSize() {
-	var all = updateMainSize();
-
-	var newHeight = parseFloat(all.style.height);
-	var newWidth = parseFloat(all.style.width);
-	
-	var descriptionField = document.getElementById('description');
-	descriptionField.style.height = (newHeight * 0.6) + 'px';
-	descriptionField.style.width = (newWidth * 0.6) + 'px';
-	descriptionField.style.fontSize = (ratio*100)+'%';
-	
-	var descriptionContainer = document.getElementById('descriptionContainer');
-	descriptionContainer.style.height = newHeight * 0.7+ 'px';
-	descriptionContainer.style.width = newWidth * 0.7 + 'px';
-	
-	var leftBottom = document.getElementById('left_bottom');
-	leftBottom.style.width = descriptionField.style.width;
-	
-	var preferedWidth = 420;
-	var ratio = newWidth / 420;
-	document.getElementById('headline').style.fontSize = (2*100*ratio)+'%';
-	descriptionField.style.fontSize = (100*ratio)+'%';
-}
 
 function increaseFont() {
 	var descriptionField = document.getElementById('description'); 

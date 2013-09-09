@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js"></script>
 	</head>
 	
-	<body onload="//init()">
+	<body onload="init()">
 		<div class="zettl">
 			<%@include file="/WEB-INF/views/header.jsp" %>
 			<form:form method="post" id="descriptionForm" class="descriptionForm" enctype="multipart/form-data">
