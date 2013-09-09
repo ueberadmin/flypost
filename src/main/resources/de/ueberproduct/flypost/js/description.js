@@ -51,27 +51,28 @@ function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
-
+    if (files.length>0) {
+      var f = files[0];
       // Only process image files.
-      if (!f.type.match('image.*')) {
-        continue;
-      }
+      if (f.type.match('image.*')) {
 
-      var reader = new FileReader();
-
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-        return function(e) {
-          // Render thumbnail.
-          var span = document.getElementById('imageArea');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" height="80%" />'].join('');
-        };
-      })(f);
-
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
+	      var reader = new FileReader();
+	      
+	      // Closure to capture the file information.
+	      reader.onload = (function(theFile) {
+	        return function(e) {
+	          // Render thumbnail.
+	        	var span = document.getElementById('imageArea');
+	        	span.innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '" />'].join('');
+	        };
+	      })(f);
+	
+	      // Read in the image file as a data URL.
+	      reader.readAsDataURL(f);
+	      
+	   }
     }
+      
   }
 
  

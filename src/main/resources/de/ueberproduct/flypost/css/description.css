@@ -1,0 +1,42 @@
+.descriptionForm {
+	height: 80%;
+	border-style: none;
+}
+
+.description {
+	height: 90%;
+	width: 100%;
+}
+
+.imageArea {
+	width:70%;
+	height:50%;
+}
+
+.left {
+	border-style: none;
+	float: left;
+	width: 70%;
+	height: 90%;
+}
+
+.right {
+	border-style: none;
+	float: left;
+	margin-left: 2%;
+	width: 25%;
+}
+
+.submit_button {
+	margin-top: 5%;
+	text-align: right;
+}
+
+.thumb {
+	margin-top: 2%;
+}
+
+.btn {
+	width: 100%;
+}
+
