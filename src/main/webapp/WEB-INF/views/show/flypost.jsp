@@ -2,42 +2,61 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="${context}/css/flypost.css">
 		<title>${vm.headline}</title>
 	</head>
 	
 	<body>
-		<div class="flypost">
-			<div class="headline">
+		<div class="flypost" style="width:100%; height:100%; text-align: center; border-style: none; border-width: 0px;">
+			<div style="font-weight: bold; font-size: 25px; width:100%;">
 				${vm.headline}
 			</div>
-			<div class="imageAndDescription">
-				<c:if test="${imageUrl != null}">
-					<div class="image">
-						<img src="${imageUrl}" width="100%" border="0">
-					</div>
-				</c:if>
-				<textarea class="description">
-					${vm.description}
-				</textarea>
-			</div>
-			<div class="sheets">
-			<%for (int i = 0; i < 5; i++) {%>
-		
-				<div style="margin:0px; width:65px; border-right: grey 2px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-					 <div class="sheet">
-					 	<div>
-					 		${vm.headline}
-					 	</div>	
-					 	<div style="float:left; width:75%;">
-					 		${vm.contactData}
-					 	</div>
-					 </div>
+			<c:if test="${imageUrl != null}">
+				<div style="height: 40%;">
+					<img src="${imageUrl}" style="width: 100%; border-style: none;">
 				</div>
-			<%} %>
+				<textarea style="width:100%; height: 35%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
+			</c:if>
+			<c:if test="${imageUrl == null}">
+				<textarea style="width:100%; height: 75%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
+			</c:if>
 			
-				<div style="margin:0px; width:65px; border-right-style: none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-					 <div class="sheet">
+			
+			<div style="width:100%; height: 20%; border-top-style: dashed; border-width: 1px;">
+			
+				<%for (int i = 0; i < 5; i++) {%>
+			
+					<div style="margin:0px; width:16%; border-right: grey 1px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+						 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+									-o-transform: rotate(270deg);  /* Opera 10.5 */   
+									-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+									filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+									-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+									position:relative;
+									left:-50%;
+									top:40%;
+									font-size:0.7em;
+									width:200%">
+						 	<div>
+						 		${vm.headline}
+						 	</div>	
+						 	<div style="float:left; width:75%;">
+						 		${vm.contactData}
+						 	</div>
+						 </div>
+					</div>
+				<%} %>
+				
+				<div style="margin:0px; width:16%; border-right: grey 1px none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+					 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+								-o-transform: rotate(270deg);  /* Opera 10.5 */   
+								-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+								filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+								-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+								position:relative;
+								left:-50%;
+								top:40%;
+								font-size:0.7em;
+								width:200%">
 					 	<div>
 					 		${vm.headline}
 					 	</div>	
@@ -48,7 +67,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</body>
 	
 </html>

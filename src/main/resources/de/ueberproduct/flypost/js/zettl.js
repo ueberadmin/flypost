@@ -32,8 +32,8 @@ function updateMainSize() {
 
 function print(id, context) {
 	var url = context+'/anschauen/'+id+'/abreisszettel';
-	
-	var mywindow = window.open(url, 'Druckansicht', 'height=594,width=420');;
+	// 2480 X 3508
+	var mywindow = window.open(url, 'Druckansicht', 'height=600,width=424');;
 
 	//mywindow.print();
 }
