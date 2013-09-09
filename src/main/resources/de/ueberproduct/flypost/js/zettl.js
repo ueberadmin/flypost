@@ -35,5 +35,5 @@ function print(id, context) {
 	// 2480 X 3508
 	var mywindow = window.open(url, 'Druckansicht', 'height=600,width=424');;
 
-	//mywindow.print();
+	mywindow.print();
 }
