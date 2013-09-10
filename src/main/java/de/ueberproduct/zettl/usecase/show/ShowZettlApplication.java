@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,8 @@ import de.ueberproduct.zettl.domain.Zettl;
 
 @Component
 public class ShowZettlApplication {
+	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private final static int MAX_HEADLINE_LENGTH = 20;
 	
@@ -30,6 +34,15 @@ public class ShowZettlApplication {
 			geodata = new Geodata(52.5170365, 13.3888599);
 		}
 		
+		Integer radius = 500;
+		if (zettl.getRadius() != null) {
+			try {
+				radius = Integer.parseInt(zettl.getRadius());
+			} catch (NumberFormatException e) {
+				logger.debug("Radius {} of zettl {} is not a number", zettl.getRadius(), zettl.getId());
+			}
+		}
+		
 		String description = zettl.getDescription().trim();
 		HeadlineAndDescription headlineAndDescription = getHeadline(description);
 		ViewModel.Builder builder = new ViewModel.Builder().headline(headlineAndDescription.getHeadline())
@@ -40,7 +53,8 @@ public class ShowZettlApplication {
 									  					   .postcode(zettl.getPostCode())
 									  					   .city(zettl.getCity())
 									  					   .lat(Double.toString(geodata.getLatitude()))
-									  					   .lon(Double.toString(geodata.getLongitude()));
+									  					   .lon(Double.toString(geodata.getLongitude()))
+									  					   .radius(radius);
 		
 		String token = zettl.getEditToken();
 		if (tokens != null && token != null && tokens.contains(token)) {

@@ -57,7 +57,31 @@ function drawmap() {
  
     // Position des Markers
     addMarker(layer_markers, ${vm.lon}, ${vm.lat}, popuptext);
+    
+    
+    map.addLayer(new OpenLayers.Layer.OSM());
+    epsg4326 = new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
+    projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
 
+    var lonLat = new OpenLayers.LonLat(${vm.lon}, ${vm.lat}).transform(epsg4326, projectTo);
+    var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+    var point = new OpenLayers.Geometry.Point(lonLat.lon, lonLat.lat);
+    var mycircle = OpenLayers.Geometry.Polygon.createRegularPolygon
+    (
+        point,
+        ${vm.radius},
+        40,
+        0
+    );
+    var featurecircle = new OpenLayers.Feature.Vector(mycircle);
+    var featurePoint = new OpenLayers.Feature.Vector(
+    	    point,
+    	    { description: 'info' }
+   	);
+   	vectorLayer.addFeatures([featurePoint, featurecircle]);
+
+   	map.addLayer(vectorLayer);
+    
 }
 
 //]]>
@@ -66,14 +90,6 @@ function drawmap() {
   </head>
   <body onload="drawmap();">
 	<%@include file="/WEB-INF/views/header.jsp" %>
-	  
-	  <%--<div id="header">
-	   <div id="content">Karte (Testversion)</div>
-	   <div id="osm">© <a href="http://www.openstreetmap.org">OpenStreetMap</a>
-	     und <a href="http://www.openstreetmap.org/copyright">Mitwirkende</a>,
-	     <a href="http://creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>
-	   </div>
-	  </div> --%>
 	  <div id="map">
 	  </div>
   	<%@include file="/WEB-INF/views/footer.jsp" %>

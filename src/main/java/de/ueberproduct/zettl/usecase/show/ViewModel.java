@@ -12,6 +12,7 @@ public class ViewModel {
 	private final String editToken;
 	private final String lon;
 	private final String lat;
+	private final Integer radius;
 
 	
 	private ViewModel(Builder builder) {
@@ -25,6 +26,7 @@ public class ViewModel {
 		this.city = builder.city;
 		this.lon = builder.lon;
 		this.lat = builder.lat;
+		this.radius = builder.radius;
 	}
 	
 	public String getCity() {
@@ -67,6 +69,10 @@ public class ViewModel {
 		return lon;
 	}
 	
+	public Integer getRadius() {
+		return radius;
+	}
+	
 	public static class Builder {
 		private String headline;
 		private String description;
@@ -78,6 +84,7 @@ public class ViewModel {
 		private String city;
 		private String lon;
 		private String lat;
+		private Integer radius;
 		
 		public Builder headline(String value) {
 			this.headline = value;
@@ -126,6 +133,11 @@ public class ViewModel {
 		
 		public Builder lat(String value) {
 			this.lat = value;
+			return this;
+		}
+		
+		public Builder radius(Integer value) {
+			this.radius = value;
 			return this;
 		}
 		
