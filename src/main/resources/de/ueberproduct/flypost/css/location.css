@@ -1,12 +1,55 @@
+.locationForm {
+	height: 80%;
+	border-style: none;
+}
+
+.zettlInput {
+	height: 5% !important;
+}
+
+.longZettlInput {
+	width: 30% !important;
+}
+
+.shortLongRow {
+	width: 30%;
+	border-style: none;
+}
+
+.short {
+	width: 100% !important;	
+}
+
+.long {
+	width: 78%;
+}
+
 .left {
 	float: left;
+	width: 20%;
+	margin-right:2%;
+}
+
+.right {
+	width: 100%;
+	text-align: right;
 }
 
 .radiusLabel {
 	text-align: right;
 	vertical-align: middle;
+	border-style: none;
+	border-width: 0px;
+	width: 100%;
+	height: 5%;
+	margin-right:2%;
+	background-color: ffffff;
 }
 
 .buttons {
-	text-align: right;
+	width: 30%;
+}
+
+h2 {
+	font-size: 1.5em;
 }
