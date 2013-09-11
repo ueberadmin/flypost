@@ -1,6 +1,7 @@
 package de.ueberproduct.zettl.usecase.edit;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import de.ueberproduct.zettl.domain.Geodata;
 import de.ueberproduct.zettl.domain.Zettl;
 import de.ueberproduct.zettl.utils.RequestUtils;
 import de.ueberproduct.zettl.web.SessionData;
@@ -72,10 +76,27 @@ public class EditZettlController {
 	}
 	
 	@RequestMapping(value = "/bearbeiten/{id}/ort", method = RequestMethod.POST)
-	public String changeLocation(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException, MessagingException {
-		application.setLocationAndEmailAddress(id, viewModel, sessionData.getTokens(), RequestUtils.getRequestContext(request));
+	public ModelAndView changeLocation(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException, MessagingException {
+		String context = request.getContextPath();
+		List<Geodata> possibleGeodatas = application.setLocationAndEmailAddress(id, viewModel, sessionData.getTokens(), RequestUtils.getRequestContext(request));
+		if (possibleGeodatas.size() <= 1) {
+			return new ModelAndView(new RedirectView(context + "/anschauen/" + id));
+		}
+		ModelAndView mav = new ModelAndView("edit/geodatas");
+		mav.addObject("geodatas", possibleGeodatas);
+		mav.addObject("context", context);
+		mav.addObject("postUrl", context + "/bearbeiten/"+id+"/osm_id");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/bearbeiten/{id}/osm_id", method = RequestMethod.POST)
+	public String setLocationByOsmId(@PathVariable("id") String id, @RequestParam("osm_id") String osmId) throws IOException {
+		application.setLocationByOsmId(id, osmId, sessionData.getTokens());
+		
 		return "redirect:/anschauen/"+id;
 	}
+	
+	
 	
 	
 	

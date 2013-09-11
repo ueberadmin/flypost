@@ -59,26 +59,32 @@ public class Zettl implements Serializable {
 		this.emailAddress = emailAddress;
 	}
 
+	@Deprecated
 	public String getStreet() {
 		return street;
 	}
 
+	@Deprecated
 	public void setStreet(String street) {
 		this.street = street;
 	}
 
+	@Deprecated
 	public String getPostCode() {
 		return postCode;
 	}
 
+	@Deprecated
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
 
+	@Deprecated
 	public String getCity() {
 		return city;
 	}
 
+	@Deprecated
 	public void setCity(String city) {
 		this.city = city;
 	}

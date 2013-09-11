@@ -1,6 +1,7 @@
 package de.ueberproduct.zettl.usecase.edit;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -62,7 +63,7 @@ public class EditZettlApplication {
 	}
 	
 
-	void setLocationAndEmailAddress(String id, EditZettlController.ViewModel viewModel, Set<String> tokens, String contextUrl) throws IOException, MessagingException {
+	List<Geodata> setLocationAndEmailAddress(String id, EditZettlController.ViewModel viewModel, Set<String> tokens, String contextUrl) throws IOException, MessagingException {
 		String street = viewModel.getStreet();
 		String postcode = viewModel.getPostCode();
 		String city = viewModel.getCity();
@@ -81,14 +82,31 @@ public class EditZettlApplication {
 			logger.info("Invalid radius", e);
 		}
 		
-		Geodata geodata = geodataService.find(street, postcode, city);
-		zettl.setGeodata(geodata);
+		List<Geodata> geodatas = geodataService.find(street, postcode, city);
+		if (geodatas.size() == 1) {
+			zettl.setGeodata(geodatas.get(0));
+		}
 		
 		save(zettl, tokens);
 		
 		if (!StringUtils.isEqual(newEmailAddress, oldEmailAddress)) {			
 			emailService.sentEditToken(newEmailAddress, contextUrl + Urls.forEdit(id)+"?auth="+zettl.getEditToken());
 		}
+		
+		return geodatas;
+	}
+	
+
+	public void setLocationByOsmId(String id, String osmId, Set<String> tokens) throws IOException {		
+		Geodata geodata = geodataService.getByOsmId(osmId);
+		Zettl zettl = loadZettl(id);
+		zettl.setGeodata(geodata);
+		zettl.setStreet(geodata.getStreet());
+		zettl.setPostCode(geodata.getPostcode());
+		zettl.setCity(geodata.getCity());
+		
+		save(zettl, tokens);
+		
 	}
 
 
@@ -117,6 +135,7 @@ public class EditZettlApplication {
 			flypost.setImageId(null);
 		}
 	}
+
 	
 	
 }

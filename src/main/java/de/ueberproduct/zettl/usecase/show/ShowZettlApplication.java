@@ -31,7 +31,9 @@ public class ShowZettlApplication {
 		Geodata geodata = zettl.getGeodata();
 		if (geodata == null) {
 			// Berlin
-			geodata = new Geodata(52.5170365, 13.3888599);
+			geodata = new Geodata();
+			geodata.setLatitude(52.5170365);
+			geodata.setLongitude(13.3888599);
 		}
 		
 		Integer radius = 500;

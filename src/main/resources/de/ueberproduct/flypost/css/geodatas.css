@@ -1,0 +1,23 @@
+.geodatasForm {
+	height: 80%;
+	border-style: none;
+}
+
+.osm_id {
+	width:26%;
+}
+
+.buttons {
+	width: 26%;
+}
+
+.left {
+	float: left;
+	width: 20%;
+	margin-right:2%;
+}
+
+.right {
+	width: 100%;
+	text-align: right;
+}
