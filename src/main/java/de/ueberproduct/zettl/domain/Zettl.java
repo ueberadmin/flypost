@@ -129,8 +129,5 @@ public class Zettl implements Serializable {
 	
 	public void setGeodata(Geodata geodata) {
 		this.geodata = geodata;
-	}
-	
-	
-
+	}	
 }

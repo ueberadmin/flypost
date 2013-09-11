@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -19,7 +20,10 @@ import com.mongodb.gridfs.GridFSFile;
 
 import de.ueberproduct.zettl.domain.Geodata;
 import de.ueberproduct.zettl.domain.Zettl;
+import de.ueberproduct.zettl.email.EmailService;
 import de.ueberproduct.zettl.osm.GeodataService;
+import de.ueberproduct.zettl.utils.StringUtils;
+import de.ueberproduct.zettl.web.Urls;
 
 @Component
 public class EditZettlApplication {
@@ -34,6 +38,9 @@ public class EditZettlApplication {
 	
 	@Resource
 	private GeodataService geodataService;
+	
+	@Resource
+	private EmailService emailService;
 	
 	Zettl getZettl(String id) {
 		Zettl zettl = loadZettl(id);
@@ -55,13 +62,15 @@ public class EditZettlApplication {
 	}
 	
 
-	void setLocation(String id, EditZettlController.ViewModel viewModel, Set<String> tokens) throws IOException {
+	void setLocationAndEmailAddress(String id, EditZettlController.ViewModel viewModel, Set<String> tokens, String contextUrl) throws IOException, MessagingException {
 		String street = viewModel.getStreet();
 		String postcode = viewModel.getPostCode();
 		String city = viewModel.getCity();
 		
 		Zettl zettl = loadZettl(id);
-		zettl.setEmailAddress(viewModel.getEmailAddress());
+		String oldEmailAddress = zettl.getEmailAddress();
+		String newEmailAddress = viewModel.getEmailAddress();
+		zettl.setEmailAddress(newEmailAddress);
 		zettl.setStreet(street);
 		zettl.setPostCode(postcode);
 		zettl.setCity(city);
@@ -76,6 +85,10 @@ public class EditZettlApplication {
 		zettl.setGeodata(geodata);
 		
 		save(zettl, tokens);
+		
+		if (!StringUtils.isEqual(newEmailAddress, oldEmailAddress)) {			
+			emailService.sentEditToken(newEmailAddress, contextUrl + Urls.forEdit(id)+"?auth="+zettl.getEditToken());
+		}
 	}
 
 

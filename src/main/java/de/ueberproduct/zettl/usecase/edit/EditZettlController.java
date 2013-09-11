@@ -3,6 +3,7 @@ package de.ueberproduct.zettl.usecase.edit;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import de.ueberproduct.zettl.domain.Zettl;
+import de.ueberproduct.zettl.utils.RequestUtils;
 import de.ueberproduct.zettl.web.SessionData;
+import de.ueberproduct.zettl.web.Urls;
 
 @Controller
 public class EditZettlController {
@@ -26,7 +29,7 @@ public class EditZettlController {
 	private EditZettlApplication application;
 	
 	
-	@RequestMapping(value = "/bearbeiten/{id}", method = RequestMethod.GET) 
+	@RequestMapping(value = Urls.FOR_EDIT, method = RequestMethod.GET) 
 	public String edit(@PathVariable("id") String id) {
 		return "redirect:"+id+"/beschreibung";
 	}
@@ -69,8 +72,8 @@ public class EditZettlController {
 	}
 	
 	@RequestMapping(value = "/bearbeiten/{id}/ort", method = RequestMethod.POST)
-	public String changeLocation(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException {
-		application.setLocation(id, viewModel, sessionData.getTokens());
+	public String changeLocation(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException, MessagingException {
+		application.setLocationAndEmailAddress(id, viewModel, sessionData.getTokens(), RequestUtils.getRequestContext(request));
 		return "redirect:/anschauen/"+id;
 	}
 	
