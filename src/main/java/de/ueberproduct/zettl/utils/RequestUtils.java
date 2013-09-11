@@ -25,7 +25,7 @@ public class RequestUtils {
 			sb.append(protocol).append("://");
 			sb.append(request.getServerName());
 			
-			if (!isDefaultPort(protocol, port)) {
+			if (port > 0) {
 				sb.append(":").append(port);
 			}
 			
@@ -37,16 +37,5 @@ public class RequestUtils {
 		}
 	}
 
-	private static boolean isDefaultPort(String protocol, int port) {
-		if (protocol.equals(HTTP) && port == 80) {
-			return true;
-		}
-		
-		if (protocol.equals(HTTPS) && port == 443) {
-			return true;
-		}
-		
-		return false;
-	}
 
 }
