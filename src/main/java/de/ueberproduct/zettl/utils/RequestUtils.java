@@ -6,8 +6,6 @@ import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestUtils {
-	private final static String HTTP = "http";
-	private final static String HTTPS = "https";
 	
 	/**
 	 * Get the request url including the context path.

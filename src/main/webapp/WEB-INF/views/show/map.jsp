@@ -7,12 +7,15 @@
 <meta http-equiv="content-style-type" content="text/css" />
 <meta http-equiv="content-language" content="de" />
 <meta name="author" content="Thomas Heiles" />
-<link rel="stylesheet" type="text/css" href="${context}/css/zettl.css">
-<link rel="stylesheet" type="text/css" href="${context}/css/map.css"></link>
+
+
+<link rel="stylesheet" type="text/css" href="${context}/css/zettl.css" />
+<link rel="stylesheet" type="text/css" href="${context}/css/map.css" />
 
 <script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
 <script type="text/javascript" src="${context}/js/tom.js"></script>
+<script type="text/javascript" src="${context}/js/zettl.js"></script>
  
 <script type="text/javascript">
 //<![CDATA[
@@ -91,6 +94,9 @@ function drawmap() {
   <body onload="drawmap();">
 	<%@include file="/WEB-INF/views/header.jsp" %>
 	  <div id="map">
+	  </div>
+	  <div class="buttons">
+	  	<a href="javascript:print('${id}', '<%=request.getContextPath()%>')">Zettl drucken</a>
 	  </div>
   	<%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
