@@ -1,7 +1,7 @@
 html,body {
   /* background-color: #000000; */
   height: 100%;
-  width: 100%;
+  width: 99%;
   
   /*
   margin: 1%; padding: 0;
@@ -44,14 +44,21 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.buttons {
+.button {
 	position: absolute;
 	border-style: solid;
 	top: 80%;
-	left: 70%;
 	width: 10%;
 	padding: 1%;
 	background-color: white;
 	z-index: 1000;
 	text-align: center;
+}
+
+.zettlButton {
+	left: 70%;
+}
+
+.flyerButton {
+	left: 83%;
 }

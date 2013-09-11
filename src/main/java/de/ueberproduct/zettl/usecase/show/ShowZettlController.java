@@ -36,7 +36,16 @@ public class ShowZettlController {
 //	}
 	
 	@RequestMapping(value = "/anschauen/{id}/abreisszettel", method = RequestMethod.GET)
-	public ModelAndView printFlypost(@PathVariable("id") String id, HttpServletRequest request) {
+	public ModelAndView printZettl(@PathVariable("id") String id, HttpServletRequest request) {
+		return print(id, request, true);
+	}
+	
+	@RequestMapping(value = "/anschauen/{id}/flyer", method = RequestMethod.GET)
+	public ModelAndView printFlyer(@PathVariable("id") String id, HttpServletRequest request) {
+		return print(id, request, false);
+	}
+	
+	private ModelAndView print(String id, HttpServletRequest request, boolean withSheets) {
 		String context = request.getContextPath();
 		ModelAndView mav = new ModelAndView("show/flypost");
 		ViewModel vm = application.find(id);
@@ -49,6 +58,7 @@ public class ShowZettlController {
 		mav.addObject("qrCodeUrl", context+"/anschauen/"+id+"/qr");
 		
 		mav.addObject("context", context);
+		mav.addObject("addSheets", withSheets);
 		return mav;
 	}
 	

@@ -95,8 +95,11 @@ function drawmap() {
 	<%@include file="/WEB-INF/views/header.jsp" %>
 	  <div id="map">
 	  </div>
-	  <div class="buttons">
+	  <div class="zettlButton button">
 	  	<a href="javascript:print('${id}', '<%=request.getContextPath()%>')">Zettl drucken</a>
+	  </div>
+	  <div class="flyerButton button">
+	  	<a href="javascript:printFlyer('${id}', '<%=request.getContextPath()%>')">Flyer drucken</a>
 	  </div>
   	<%@include file="/WEB-INF/views/footer.jsp" %>
 </body>

@@ -23,11 +23,33 @@
 				<img src="${qrCodeUrl}" style="border-style: none; height: 100%;">
 			</div>
 			
-			<div style="width:100%; height: 19%; border-top-style: dashed; border-width: 1px;">
-			
-				<%for (int i = 0; i < 5; i++) {%>
-			
-					<div style="margin:0px; width:16%; border-right: grey 1px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+			<c:if test="${addSheets}">
+				<div style="width:100%; height: 19%; border-top-style: dashed; border-width: 1px;">
+				
+					<%for (int i = 0; i < 5; i++) {%>
+				
+						<div style="margin:0px; width:16%; border-right: grey 1px dashed; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
+							 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
+										-o-transform: rotate(270deg);  /* Opera 10.5 */   
+										-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
+										filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
+										-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
+										position:relative;
+										left:-50%;
+										top:40%;
+										font-size:0.7em;
+										width:200%">
+							 	<div>
+							 		${vm.headline}
+							 	</div>	
+							 	<div style="float:left; width:75%;">
+							 		${vm.contactData}
+							 	</div>
+							 </div>
+						</div>
+					<%} %>
+					
+					<div style="margin:0px; width:16%; border-right: grey 1px none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
 						 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
 									-o-transform: rotate(270deg);  /* Opera 10.5 */   
 									-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
@@ -46,28 +68,8 @@
 						 	</div>
 						 </div>
 					</div>
-				<%} %>
-				
-				<div style="margin:0px; width:16%; border-right: grey 1px none; height:100%; float:left; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;">
-					 <div style="-moz-transform: rotate(270deg);  /* FF3.5+ */        
-								-o-transform: rotate(270deg);  /* Opera 10.5 */   
-								-webkit-transform: rotate(270deg);  /* Saf3.1+, Chrome */              
-								filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */          
-								-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* IE8 */
-								position:relative;
-								left:-50%;
-								top:40%;
-								font-size:0.7em;
-								width:200%">
-					 	<div>
-					 		${vm.headline}
-					 	</div>	
-					 	<div style="float:left; width:75%;">
-					 		${vm.contactData}
-					 	</div>
-					 </div>
 				</div>
-			</div>
+			</c:if>
 		</div>
 	</body>
 	

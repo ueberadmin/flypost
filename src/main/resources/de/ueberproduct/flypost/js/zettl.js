@@ -37,3 +37,11 @@ function print(id, context) {
 
 	mywindow.print();
 }
+
+function printFlyer(id, context) {
+	var url = context+'/anschauen/'+id+'/flyer';
+	// 2480 X 3508
+	var mywindow = window.open(url, 'Druckansicht', 'height=600,width=424');
+
+	mywindow.print();
+}
