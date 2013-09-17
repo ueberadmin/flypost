@@ -34,6 +34,17 @@ public class GeodataService {
 	private final Gson gson = new Gson();
 
 	public List<Geodata> find(final String street, final String postcode, final String city) throws IOException {
+		List<Geodata> result = findInternal(street, postcode, city);
+		if (result.isEmpty() && !StringUtils.isEmtpy(postcode)) {
+			result = findInternal(street, null, city);
+		}
+		
+		return result;
+	}
+
+	private List<Geodata> findInternal(final String street,
+			final String postcode, final String city) throws IOException,
+			ClientProtocolException {
 		StringBuilder url = new StringBuilder("http://nominatim.openstreetmap.org/search?format=json&accept-language=de_DE&countrycode=de&country=Deutschland&addressdetails=1");
 		
 		append("street", street, url);
@@ -41,7 +52,7 @@ public class GeodataService {
 		append("city", city, url);
 		
 		HttpGet get = new HttpGet(url.toString());
-		return httpClientProvider.getHttpClient().execute(get, new ResponseHandler<List<Geodata>>() {
+		List<Geodata> result = httpClientProvider.getHttpClient().execute(get, new ResponseHandler<List<Geodata>>() {
 
 			@Override
 			public List<Geodata> handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
@@ -68,6 +79,7 @@ public class GeodataService {
 				return geodatas;
 			}
 		});
+		return result;
 	}
 	
 	public Geodata getByOsmId(String osmId) throws IOException {
