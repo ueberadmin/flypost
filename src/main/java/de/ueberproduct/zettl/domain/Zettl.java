@@ -14,9 +14,16 @@ public class Zettl implements Serializable {
 	private String id;
 	private String description;
 	private String emailAddress;
+	
+	@Deprecated
 	private String street;
+	
+	@Deprecated
 	private String postCode;
+	
+	@Deprecated
 	private String city;
+	
 	private String radius;
 	private String imageId;
 	

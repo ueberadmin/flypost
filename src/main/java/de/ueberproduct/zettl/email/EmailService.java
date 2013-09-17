@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 	
-	public void sentEditToken(String emailAddress, String editUrl) throws MessagingException {
+	public void sentEditToken(String emailAddress, String editUrl, String viewUrl) throws MessagingException {
 
 	      // Sender's email ID needs to be mentioned
 	      String from = "service@betabox.eu";
@@ -47,7 +47,7 @@ public class EmailService {
 		 message.setSubject("Dein Zettl");
 		
 		 // Now set the actual message
-		 message.setText("Benutze " + editUrl + " um Deinen Zettl zu bearbeiten.");
+		 message.setText("Benutze " + editUrl + " um Deinen Zettl zu bearbeiten. Unter "+viewUrl+" kann der Zettl angeschaut werden.");
 		
 		 // Send message
 		 Transport.send(message);	      

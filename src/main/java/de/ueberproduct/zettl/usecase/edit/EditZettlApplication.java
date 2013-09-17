@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mongodb.gridfs.GridFSFile;
 
+import de.ueberproduct.shorturl.ShortUrlService;
 import de.ueberproduct.zettl.domain.Geodata;
 import de.ueberproduct.zettl.domain.Zettl;
 import de.ueberproduct.zettl.email.EmailService;
@@ -42,6 +43,9 @@ public class EditZettlApplication {
 	
 	@Resource
 	private EmailService emailService;
+	
+	@Resource
+	private ShortUrlService shortUrlService;
 	
 	Zettl getZettl(String id) {
 		Zettl zettl = loadZettl(id);
@@ -89,8 +93,10 @@ public class EditZettlApplication {
 		
 		save(zettl, tokens);
 		
+		String shortUrl = shortUrlService.getShortUrl(contextUrl + Urls.forOverview(id), contextUrl);
+		
 		if (!StringUtils.isEqual(newEmailAddress, oldEmailAddress)) {			
-			emailService.sentEditToken(newEmailAddress, contextUrl + Urls.forEdit(id)+"?auth="+zettl.getEditToken());
+			emailService.sentEditToken(newEmailAddress, contextUrl + Urls.forEdit(id)+"?auth="+zettl.getEditToken(), shortUrl);
 		}
 		
 		return geodatas;
