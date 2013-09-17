@@ -45,6 +45,8 @@ public class ShowZettlApplication {
 			}
 		}
 		
+		Long zoom = Math.round(90 / Math.log(radius)); // between 10 and 18
+		
 		String description = zettl.getDescription().trim();
 		HeadlineAndDescription headlineAndDescription = getHeadline(description);
 		ViewModel.Builder builder = new ViewModel.Builder().headline(headlineAndDescription.getHeadline())
@@ -56,7 +58,8 @@ public class ShowZettlApplication {
 									  					   .city(zettl.getCity())
 									  					   .lat(Double.toString(geodata.getLatitude()))
 									  					   .lon(Double.toString(geodata.getLongitude()))
-									  					   .radius(radius);
+									  					   .radius(radius)
+									  					   .zoom(zoom.intValue());
 		
 		String token = zettl.getEditToken();
 		if (tokens != null && token != null && tokens.contains(token)) {

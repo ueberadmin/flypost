@@ -34,7 +34,7 @@ function drawmap() {
     // Position und Zoomstufe der Karte
     var lon = ${vm.lon}; //6.641389;
     var lat = ${vm.lat}; //49.756667;
-    var zoom = 15;
+    var zoom = ${vm.zoom};
 
     map = new OpenLayers.Map('map', {
         projection: new OpenLayers.Projection("EPSG:900913"),
