@@ -9,6 +9,14 @@
 		<script type="text/javascript" src="${context}/js/zettl.js"></script>
 		<script type="text/javascript" src="${context}/js/description.js"></script>
 		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js"></script>
+		<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+		<script>
+        	tinymce.init({	selector:'textarea',
+        					menubar : false,
+        					plugins: "image",
+        					toolbar: "undo redo | bold italic | fontselect | fontsizeselect"
+        				});
+		</script>
 	</head>
 	
 	<body onload="init()">
@@ -26,9 +34,11 @@
 				
 				<div class="right">
 					<div class="btn-group btn-group-vertical">
+						<!-- 
 						<button class="btn" onclick="increaseFont(); return false;">A+</button>
 							<button class="btn" onclick="decreaseFont(); return false;">A-</button>
 							<br>
+							 -->
 							<button id="upimage" class="btn btn-file" onclick="return false;">
 								<img src="${context}/icons/upload-icon.png" border="0" width="100%">
 							</button>

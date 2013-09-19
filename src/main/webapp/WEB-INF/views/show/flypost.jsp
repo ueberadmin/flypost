@@ -12,12 +12,14 @@
 			</div>
 			<c:if test="${imageUrl != null}">
 				<div style="height: 40%;">
-					<img src="${imageUrl}" style="width: 100%; border-style: none;">
+					<img src="${imageUrl}" style="height: 100%; border-style: none;">
 				</div>
-				<textarea style="width:100%; height: 28%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
+				<!-- textarea style="width:100%; height: 28%; border-style:none; resize: none;" readonly>${vm.description}</textarea -->
+				<div style="width:100%; height: 25%; border-style:none; resize: none;">${vm.description}</div>
 			</c:if>
 			<c:if test="${imageUrl == null}">
-				<textarea style="width:100%; height: 68%; border-style:none; resize: none;" readonly>${vm.description}</textarea>
+				<!--  textarea style="width:100%; height: 68%; border-style:none; resize: none;" readonly>${vm.description}</textarea -->
+				<div style="width:100%; height: 65%; border-style:none; resize: none;">${vm.description}</div>
 			</c:if>
 			<div style="height: 10%; margin: 1px; text-align: right;">
 				<img src="${qrCodeUrl}" style="border-style: none; height: 100%;">
