@@ -27,7 +27,7 @@ public class ImageUploadController {
 		String imageId = application.storeImage(getOnlyFile(request));
 		String context = req.getContextPath();
 		String url = Urls.forImage(imageId);
-		String result = "<img class=\"doksoft_image_img\" src=\""+context+"/"+url+"\" />";
+		String result = "<img class=\"doksoft_image_img\" src=\""+context+url+"\" />";
 		return new UploadResponse(result);
 		
 	}
