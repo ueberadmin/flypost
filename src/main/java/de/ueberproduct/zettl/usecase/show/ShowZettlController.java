@@ -50,10 +50,6 @@ public class ShowZettlController {
 		ModelAndView mav = new ModelAndView("show/flypost");
 		ViewModel vm = application.find(id);
 		mav.addObject("vm", vm);
-		String imageId = vm.getImageId();
-		if (imageId != null) {
-			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
-		}
 		
 		mav.addObject("qrCodeUrl", context+"/anschauen/"+id+"/qr");
 		
@@ -70,12 +66,7 @@ public class ShowZettlController {
 		ModelAndView mav = new ModelAndView("show/map");
 		mav.addObject("context", context);
 		mav.addObject("vm", vm);
-		
-		String imageId = vm.getImageId();
-		if (imageId != null) {
-			mav.addObject("imageUrl", context+"/aushaenge/"+id+"/image");
-		}
-		
+
 		return mav;
 	}
 	

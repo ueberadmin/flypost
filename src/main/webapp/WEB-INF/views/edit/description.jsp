@@ -13,8 +13,9 @@
 		<script>
         	tinymce.init({	selector:'textarea',
         					menubar : false,
-        					plugins: "image",
-        					toolbar: "undo redo | bold italic | fontselect | fontsizeselect"
+        					plugins: "image,doksoft_image",
+        					toolbar: "undo redo | bold italic | fontselect | fontsizeselect | doksoft_image",
+        					relative_urls: false
         				});
 		</script>
 	</head>
@@ -25,42 +26,12 @@
 			<form:form method="post" id="descriptionForm" class="descriptionForm" enctype="multipart/form-data">
 				<div class="left">
 					<div>
-						<form:textarea path="description" class="description" placeholder="Dein Zettltxt ..." tabindex="-1" />
+						<form:textarea path="description" class="description" placeholder="Dein Zettltxt ..." tabindex="-1" readonly="readonly" />
 					</div>
 					<div class="submit_button">
 						<button type="submit">Zettln</button>
 					</div>
-				</div>
-				
-				<div class="right">
-					<div class="btn-group btn-group-vertical">
-						<!-- 
-						<button class="btn" onclick="increaseFont(); return false;">A+</button>
-							<button class="btn" onclick="decreaseFont(); return false;">A-</button>
-							<br>
-							 -->
-							<button id="upimage" class="btn btn-file" onclick="return false;">
-								<img src="${context}/icons/upload-icon.png" border="0" width="100%">
-							</button>
-						<input type="file" id="image"  name="image" style="display:none" />
-						<script type="text/javascript">
-							$("#upimage").click(function () {
-							    $("#image").trigger('click');
-							});
-						</script>
-					</div>
-					<div id="imageArea" class="imageArea">
-						<c:if test="${imageUrl != null}">
-							<img class="thumb" src="${imageUrl}" />
-						</c:if>
-					</div>
-					<script type="text/javascript">
-					 var filesInput = document.getElementById('image');
-					  if (filesInput) {
-					  	filesInput.addEventListener('change', handleFileSelect, false);
-					  }
-					</script>
-				</div>			
+				</div>							
 				
 			</form:form>
 			<%@include file="/WEB-INF/views/footer.jsp" %>

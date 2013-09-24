@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -56,7 +55,7 @@ public class EditZettlController {
 	
 	@RequestMapping(value = "/bearbeiten/{id}/beschreibung", method = RequestMethod.POST)
 	public String changeDescription(@PathVariable("id") String id, @ModelAttribute("command") ViewModel viewModel, HttpServletRequest request) throws IOException {
-		application.setDescriptionAndImage(id, viewModel.getDescription(), viewModel.getImage(), sessionData.getTokens());
+		application.setDescription(id, viewModel.getDescription(), sessionData.getTokens());
 		return "redirect:/bearbeiten/"+id+"/ort";
 	}
 	
@@ -108,8 +107,6 @@ public class EditZettlController {
 		private String city;
 		private String radius;
 		
-		private MultipartFile image;
-		
 		public String getEmailAddress() {
 			return emailAddress;
 		}
@@ -156,14 +153,6 @@ public class EditZettlController {
 		
 		public void setDescription(String description) {
 			this.description = description;
-		}
-		
-		public MultipartFile getImage() {
-			return image;
-		}
-		
-		public void setImage(MultipartFile image) {
-			this.image = image;
 		}
 	}
 

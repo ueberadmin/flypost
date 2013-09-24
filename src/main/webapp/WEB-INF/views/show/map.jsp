@@ -27,7 +27,7 @@ var layer_markers;
 
 function drawmap() {
     // Popup und Popuptext mit evtl. Grafik
-    var popuptext="<font color=\"black\"><b>${vm.headline}<br>${vm.street}<br>${vm.postcode} ${vm.city}</b><p><img src=\"${imageUrl}\" width=\"180\" height=\"113\"></p></font>";
+    var popuptext="<font color=\"black\"><b>${vm.headline}<br>${vm.street}<br>${vm.postcode} ${vm.city}</b><p><div src=\"${imageUrl}\" width=\"180\" height=\"113\"></p></font>";
 
     OpenLayers.Lang.setCode('de');
     

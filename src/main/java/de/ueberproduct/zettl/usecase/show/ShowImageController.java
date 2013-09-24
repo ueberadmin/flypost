@@ -20,6 +20,7 @@ import com.mongodb.gridfs.GridFSDBFile;
 
 import de.ueberproduct.zettl.domain.Zettl;
 import de.ueberproduct.zettl.utils.StreamUtils;
+import de.ueberproduct.zettl.web.Urls;
 
 @Controller
 public class ShowImageController {
@@ -33,8 +34,12 @@ public class ShowImageController {
 	@RequestMapping("/aushaenge/{id}/image")
 	public void showImage(@PathVariable("id") String flypostId, HttpServletResponse response) throws IOException {
 		Zettl flypost = mongoOperations.findById(flypostId, Zettl.class);
-		
-		GridFSDBFile file = gridFsOperations.findOne(new Query(Criteria.where("_id").is(new ObjectId(flypost.getImageId()))));
+		showDecoupledImage(flypost.getImageId(), response);
+	}
+	
+	@RequestMapping(Urls.FOR_IMAGE)
+	public void showDecoupledImage(@PathVariable("id") String imageId, HttpServletResponse response) throws IOException {
+		GridFSDBFile file = gridFsOperations.findOne(new Query(Criteria.where("_id").is(new ObjectId(imageId))));
 		
 //		file.writeTo("/home/andre/Desktop/new-testing.png");
 		response.setContentType(file.getContentType());
@@ -44,6 +49,5 @@ public class ShowImageController {
 		
 		in.close();
 		out.flush();
-		
 	}
 }

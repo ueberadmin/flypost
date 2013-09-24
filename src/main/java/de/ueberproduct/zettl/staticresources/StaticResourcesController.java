@@ -46,9 +46,9 @@ public class StaticResourcesController {
 		get("de/ueberproduct/flypost/tinymce/themes/"+theme+"/"+name+".js", response);
 	}
 	
-	@RequestMapping(value="/tinymce/plugins/{plugin}/{name}.js")
-	public void getTinymcePlugin(@PathVariable("plugin") String plugin, @PathVariable("name") String name, HttpServletResponse response) throws IOException {
-		get("de/ueberproduct/flypost/tinymce/plugins/"+plugin+"/"+name+".js", response);
+	@RequestMapping(value="/tinymce/plugins/{plugin}/{name}.{type}")
+	public void getTinymcePlugin(@PathVariable("plugin") String plugin, @PathVariable("name") String name, @PathVariable("type") String type, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/tinymce/plugins/"+plugin+"/"+name+"."+type, response);
 	}
 	
 	@RequestMapping(value="/tinymce/skins/{skin}/{name}.css")

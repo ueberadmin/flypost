@@ -7,17 +7,10 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 
-import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.mongodb.gridfs.GridFSFile;
 
 import de.ueberproduct.shorturl.ShortUrlService;
 import de.ueberproduct.zettl.domain.Geodata;
@@ -36,10 +29,10 @@ public class EditZettlApplication {
 	private MongoOperations mongoOperations;
 	
 	@Resource
-	private GridFsOperations gridFsOperations;
+	private GeodataService geodataService;
 	
 	@Resource
-	private GeodataService geodataService;
+	private ZettlUpdater zettlUpdater;
 	
 	@Resource
 	private EmailService emailService;
@@ -52,19 +45,14 @@ public class EditZettlApplication {
 		return zettl;
 	}
 	
-	void setDescriptionAndImage(String id, String description, MultipartFile image, Set<String> tokens) throws IOException {
+	void setDescription(String id, String description, Set<String> tokens) {
 		Zettl zettl = loadZettl(id);		
 		
 		zettl.setDescription(description);
 		
-		if (image != null && !image.isEmpty()) {
-			deleteOldImage(zettl);
-			GridFSFile gridFSFile = gridFsOperations.store(image.getInputStream(), image.getName(), image.getContentType());
-			zettl.setImageId(gridFSFile.getId().toString());
-		}
-		
-		save(zettl, tokens);
+		zettlUpdater.save(zettl, tokens);
 	}
+
 	
 
 	List<Geodata> setLocationAndEmailAddress(String id, EditZettlController.ViewModel viewModel, Set<String> tokens, String contextUrl) throws IOException, MessagingException {
@@ -91,7 +79,7 @@ public class EditZettlApplication {
 			zettl.setGeodata(geodatas.get(0));
 		}
 		
-		save(zettl, tokens);
+		zettlUpdater.save(zettl, tokens);
 		
 		String shortUrl = shortUrlService.getShortUrl(contextUrl + Urls.forOverview(id), contextUrl);
 		
@@ -111,18 +99,12 @@ public class EditZettlApplication {
 		zettl.setPostCode(geodata.getPostcode());
 		zettl.setCity(geodata.getCity());
 		
-		save(zettl, tokens);
+		zettlUpdater.save(zettl, tokens);
 		
 	}
 
 
-	private void save(Zettl zettl, Set<String> tokens) {
-		if (!tokens.contains(zettl.getEditToken())) {
-			throw new IllegalArgumentException("User is not allowed to change this zettl.");
-		}
-		mongoOperations.save(zettl);
-	}
-	
+
 	
 
 	private Zettl loadZettl(String id) {
@@ -134,13 +116,6 @@ public class EditZettlApplication {
 	}
 
 
-	private void deleteOldImage(Zettl flypost) {
-		String imageId = flypost.getImageId();
-		if (imageId != null) {
-			gridFsOperations.delete(new Query(Criteria.where("_id").is(new ObjectId(flypost.getImageId()))));
-			flypost.setImageId(null);
-		}
-	}
 
 	
 	
