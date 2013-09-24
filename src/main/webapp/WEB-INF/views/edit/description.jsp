@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="${context}/js/zettl.js"></script>
 		<script type="text/javascript" src="${context}/js/description.js"></script>
 		<script type="text/javascript" src="${context}/js/jquery-1.3.1.min.js"></script>
-		<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+		<script src="${context}/tinymce/tinymce.min.js"></script>
 		<script>
         	tinymce.init({	selector:'textarea',
         					menubar : false,

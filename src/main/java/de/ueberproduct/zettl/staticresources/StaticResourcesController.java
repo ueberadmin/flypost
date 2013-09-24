@@ -36,6 +36,31 @@ public class StaticResourcesController {
 		get("de/ueberproduct/flypost/js/"+name+".js", response);
 	}
 	
+	@RequestMapping(value="/tinymce/{name}.js")
+	public void getTinymceJs(@PathVariable("name") String name, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/tinymce/"+name+".js", response);
+	}
+	
+	@RequestMapping(value="/tinymce/themes/{theme}/{name}.js")
+	public void getTinymceTheme(@PathVariable("theme") String theme, @PathVariable("name") String name, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/tinymce/themes/"+theme+"/"+name+".js", response);
+	}
+	
+	@RequestMapping(value="/tinymce/plugins/{plugin}/{name}.js")
+	public void getTinymcePlugin(@PathVariable("plugin") String plugin, @PathVariable("name") String name, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/tinymce/plugins/"+plugin+"/"+name+".js", response);
+	}
+	
+	@RequestMapping(value="/tinymce/skins/{skin}/{name}.css")
+	public void getTinymceSkin(@PathVariable("skin") String skin, @PathVariable("name") String name, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/tinymce/skins/"+skin+"/"+name+".css", response);
+	}
+	
+	@RequestMapping(value="/tinymce/skins/{skin}/fonts/{font}.{type}")
+	public void getTinymceFont(@PathVariable("skin") String skin, @PathVariable("font") String font, @PathVariable("type") String type, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/tinymce/skins/"+skin+"/fonts/"+font+"."+type, response);
+	}
+	
 	
 	private void get(String resourceUrl, HttpServletResponse response) throws IOException {
 		byte[] bytes = cache.get(resourceUrl);
