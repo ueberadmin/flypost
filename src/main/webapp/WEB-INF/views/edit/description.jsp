@@ -14,8 +14,9 @@
         	tinymce.init({	selector:'textarea',
         					menubar : false,
         					plugins: "image,doksoft_image",
-        					toolbar: "undo redo | bold italic | fontselect | fontsizeselect | doksoft_image",
-        					relative_urls: false
+        					toolbar: "bold italic | fontselect | fontsizeselect | doksoft_image",
+        					relative_urls: false,
+        					statusbar: false
         				});
 		</script>
 	</head>
@@ -29,10 +30,9 @@
 						<form:textarea path="description" class="description" placeholder="Dein Zettltxt ..." tabindex="-1" readonly="readonly" />
 					</div>
 					<div class="submit_button">
-						<button type="submit">Zettln</button>
+						<button type="submit" class="zettl_button">Zettln</button>
 					</div>
-				</div>							
-				
+				</div>						
 			</form:form>
 			<%@include file="/WEB-INF/views/footer.jsp" %>
 		</div>

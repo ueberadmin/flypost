@@ -13,7 +13,7 @@
 		<div class="zettl">
 			<%@include file="/WEB-INF/views/header.jsp" %>
 			<form:form method="post" class="locationForm">
-				<div>
+				<div class="row">
 					<h2>
 						Wer zettlt?
 					</h2>
@@ -22,7 +22,7 @@
 					</div>
 				</div>
 						
-				<div>
+				<div class="row">
 					<h2>
 						Wo wird gezettlt?
 					</h2>
@@ -42,21 +42,21 @@
 						
 						<div class="shortLongRow">
 							<div class="left">
-								<input class="radiusLabel" placeholder="Umkreis" readonly="readonly" style="background-color:ffffff;">
 							</div>
 							
 							<div class="right">
-								<form:input path="radius" placeholder="500 m" class="zettlInput long"/>
+								<form:input path="radius" placeholder="Umkreis in m" class="zettlInput long"/>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div id="buttons" class="buttons">
-					<div class="left">
-						<button onclick="browser.back();">Zur&uuml;ck</button>
-					</div>
-					<div class="right">
-						<button type="submit">Zettln</button>
+						
+						<div class="shortLongRow">
+							<div class="left">
+								<button onclick="window.browser.back();" class="zettl_button">Zur&uuml;ck</button>
+							</div>
+							<div class="right">
+								<button type="submit" class="zettl_button">Zettln</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</form:form>

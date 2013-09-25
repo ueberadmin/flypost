@@ -25,6 +25,11 @@ public class StaticResourcesController {
 		get("de/ueberproduct/flypost/images/"+name+".png", response);
 	}
 	
+	@RequestMapping(value="/img/{name}.{type}")
+	public void getImage(@PathVariable("name") String name, @PathVariable("type") String type, HttpServletResponse response) throws IOException {
+		get("de/ueberproduct/flypost/images/"+name+"."+type, response);
+	}
+	
 	@RequestMapping(value="/css/{name}.css", produces="text/css")
 	public void getCss(@PathVariable("name") String name, HttpServletResponse response) throws IOException {
 		get("de/ueberproduct/flypost/css/"+name+".css", response);

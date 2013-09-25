@@ -1,3 +1,18 @@
+body
+{
+	text-align: center;
+	min-height: 101%;
+	
+	font: 100.01%/130% Droid Sans, Arial, Helvetica, sans serif;
+	color: #524E4A;
+	
+	background-color: #eee;
+	background-image: url(../img/sample_map.png);
+	background-repeat: repeat;
+	background-position: top center;
+	background-attachment: scroll;
+} 
+
 .descriptionForm {
 	height: 80%;
 	border-style: none;
@@ -15,7 +30,8 @@
 
 .left {
 	border-style: none;
-	float: left;
+	margin-left:15%;
+	margin-top: 1%;
 	width: 70%;
 	height: 90%;
 }

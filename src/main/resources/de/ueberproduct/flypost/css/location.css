@@ -1,6 +1,30 @@
+body
+{
+	text-align: center;
+	min-height: 101%;
+	
+	font: 100.01%/130% Droid Sans, Arial, Helvetica, sans serif;
+	color: #524E4A;
+	
+	background-color: #eee;
+	background-image: url(../img/sample_map.png);
+	background-repeat: repeat;
+	background-position: top center;
+	background-attachment: scroll;
+}
+
+.row {
+	text-align:left;
+	color: #3375D2;
+	margin-left: 0px;
+}
+
 .locationForm {
+	background-color:rgba(255,255,255,0.3);
 	height: 80%;
 	border-style: none;
+	margin-left: 2%;
+	margin-right: 2%;
 }
 
 .zettlInput {
